@@ -1,3 +1,9 @@
+#ros project
+build/**
+install/**
+log/**
+.vscode
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
