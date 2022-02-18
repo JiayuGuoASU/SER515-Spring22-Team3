@@ -15,14 +15,19 @@
   <!-- caster property-->
   <xacro:property name="caster_xoff" value="0.14"/>
 
+  <!-- laser property-->
+  <xacro:property name="laser_radius" value="0.1"/>
+  <xacro:property name="laser_length" value="0.1"/>
+
+
  <!-- Robot Base -->
   <link name="base_link">
     <visual>
       <geometry>
         <box size="${base_length} ${base_width} ${base_height}"/>
       </geometry>
-      <material name="Cyan">
-        <color rgba="0 1.0 1.0 1.0"/>
+      <material name="Blue">
+        <color rgba="0.1 0.1 1.0 0.8"/>
       </material>
     </visual>
   </link>
@@ -67,8 +72,8 @@
       <geometry>
         <sphere radius="${(wheel_radius+wheel_zoff-(base_height/2))}"/>
       </geometry>
-      <material name="Cyan">
-        <color rgba="0 1.0 1.0 1.0"/>
+      <material name="Blue">
+        <color rgba="0.1 0.1 1.0 1.0"/>
       </material>
     </visual>
   </link>
@@ -78,4 +83,22 @@
     <child link="front_caster"/>
     <origin xyz="${caster_xoff} 0.0 ${-(base_height/2)}" rpy="0 0 0"/>
   </joint>
+  
+  <!-- laser -->
+  <link name="laser_link">
+    <visual>
+        <geometry>
+            <cylinder radius="${laser_radius}" length="${laser_length}"/>
+        </geometry>
+        <material name="Black">
+          <color rgba="0.0 0.0 0.0 0.8"/>
+        </material>
+      </visual>
+  </link>
+
+ <joint name="laser_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="laser_link"/>
+    </joint>
+
 </robot>
