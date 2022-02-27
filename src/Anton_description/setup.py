@@ -27,7 +27,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "autoControl = Anton_description.autoControl:main"
+            "autoControl = Anton_description.autoControl:main",
+            "autoControlJointState = Anton_description.autoControlJointState:main"
         ],
     },
 )
