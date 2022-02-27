@@ -7,10 +7,10 @@ def generate_launch_description():
     package_name = 'Anton_description'
     urdf_name = 'Anton_description.urdf'
     rviz_configuration_name = 'urdf_config.rviz'
-
     pkg_share = launch_ros.substitutions.FindPackageShare(package= package_name).find(package_name)
     default_model_path = os.path.join(pkg_share, f'urdf/{urdf_name}')
     default_rviz_config_path = os.path.join(pkg_share, f'rviz/{rviz_configuration_name}')
+    world_path=os.path.join(pkg_share, 'world/my_world2.sdf'),
 
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
@@ -57,7 +57,7 @@ def generate_launch_description():
                                             description='Absolute path to robot urdf file'),
         launch.actions.DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
                                             description='Absolute path to rviz config file'),
-        launch.actions.ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so'], output='screen'),
+        launch.actions.ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so', world_path], output='screen'),
         launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
                                             description='Flag to enable use_sim_time'),
         joint_state_publisher_node,
