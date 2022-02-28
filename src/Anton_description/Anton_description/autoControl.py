@@ -18,16 +18,16 @@ class WriterNode(Node):
         msg = Twist()
         if self.i % 4 == 0:
             msg.linear.x = 0.2
-            msg.linear.z = 0.0
+            msg.angular.z = 0.0
         if self.i % 4 == 1:
             msg.linear.x = 0.0
-            msg.linear.z = 0.2
+            msg.angular.z = 0.2
         if self.i % 4 == 2:
             msg.linear.x = -0.2
-            msg.linear.z = 0.0
+            msg.angular.z = 0.0
         if self.i % 4 == 3:
             msg.linear.x = 0.0
-            msg.linear.z = 0.2
+            msg.angular.z = 0.2
         self.pub_vel.publish(msg)
         # self.get_logger().info("Linearx:%f, Linearz:%f" % (msg.linear.x,msg.linear.z))
         self.i += 1

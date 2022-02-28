@@ -28,7 +28,8 @@ setup(
     entry_points={
         'console_scripts': [
             "autoControl = Anton_description.autoControl:main",
-            "autoControlJointState = Anton_description.autoControlJointState:main"
+            "autoControlJointState = Anton_description.autoControlJointState:main",
+            "mC = Anton_description.manullayControl:main"
         ],
     },
 )
