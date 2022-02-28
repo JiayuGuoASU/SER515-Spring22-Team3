@@ -37,4 +37,7 @@ Press e To Exit
 Input the menu: 
 ```
 Then you could enter either 'w/a/s/d' or 'q' or 'e' for control.
+new terminal for robot using laser to avoid the robot collosion and auto motion
+```
+ros2 run Anton_description lmC
 

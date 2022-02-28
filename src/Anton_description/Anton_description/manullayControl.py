@@ -41,7 +41,7 @@ def handle_keyboard(publisher):
             msg.linear.x = 0.0
             msg.angular.z = -0.4
             publisher.publish(msg)
-            print(" \n>>> command is published : s")
+            print(" \n>>> command is published : d")
         elif menu == 'q':
             msg.linear.x = 0.0
             msg.angular.z = 0.0
