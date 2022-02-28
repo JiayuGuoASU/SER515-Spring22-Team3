@@ -32,5 +32,8 @@ class WriterNode(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = WriterNode("laserScanAndRotate")
-    rclpy.spin(node)
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
