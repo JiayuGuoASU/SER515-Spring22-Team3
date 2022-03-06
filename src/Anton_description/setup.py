@@ -16,6 +16,7 @@ setup(
         (os.path.join('share', package_name, 'urdf'), glob('urdf/**')),
         (os.path.join('share', package_name, 'rviz'), glob('rviz/**')),
         (os.path.join('share', package_name, 'config'), glob('config/**')),
+        (os.path.join('share', package_name, 'world'), glob('world/**')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -26,6 +27,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            "autoControl = Anton_description.autoControl:main",
+            "autoControlJointState = Anton_description.autoControlJointState:main",
+            "mC = Anton_description.manullayControl:main",
+            "lmC = Anton_description.laserScanAndRotate:main"
         ],
     },
 )
