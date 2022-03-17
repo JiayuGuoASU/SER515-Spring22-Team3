@@ -28,10 +28,10 @@ class WriterNode(Node):
             return
         if minleft<0.5:
             msg2.linear.x=-0.1
-            msg2.angular.z=-0.5      
+            msg2.angular.z=0.5      
         if minright<0.5:
             msg2.linear.x=-0.1
-            msg2.angular.z=0.5 
+            msg2.angular.z=-0.5 
         self.pub_vel.publish(msg2)
     def __del__(self):
         msg2=Twist()
