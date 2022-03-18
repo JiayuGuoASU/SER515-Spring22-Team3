@@ -1,4 +1,5 @@
 import unittest
+
 import Map
 # This calss tested if the Map class works
 class Testing(unittest.TestCase):
