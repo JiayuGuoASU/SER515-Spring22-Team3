@@ -3,6 +3,8 @@ from launch.substitutions import Command, LaunchConfiguration
 import launch_ros
 import os
 
+# Reference: https://navigation.ros.org/setup_guides/urdf/setup_urdf.html
+
 def generate_launch_description():
     package_name = 'Anton_description'
     urdf_name = 'Anton_description.urdf'

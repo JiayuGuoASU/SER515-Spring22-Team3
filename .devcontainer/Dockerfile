@@ -1,3 +1,4 @@
+# Reference: https://www.allisonthackston.com/articles/vscode-docker-ros2.html
 FROM althack/ros2:foxy-gazebo 
 
 # ** [Optional] Uncomment this section to install additional packages. **
