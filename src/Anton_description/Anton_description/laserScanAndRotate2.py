@@ -25,11 +25,14 @@ class WriterNode(Node):
             msg2.linear.x=-0.1
             msg2.angular.z=0.5
             self.pub_vel.publish(msg2)
+            print("both")
             return
         if minleft<0.5:
+            print('turn left')
             msg2.linear.x=-0.1
             msg2.angular.z=0.5      
         if minright<0.5:
+            print('turn right')
             msg2.linear.x=-0.1
             msg2.angular.z=-0.5 
         self.pub_vel.publish(msg2)
