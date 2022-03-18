@@ -14,25 +14,43 @@ class WriterNode(Node):
         self.msg.linear.x=0.2;
         self.msg.angular.z=0.0;
         self.pub_vel.publish(self.msg)
+        self.time=0
+        self.timer=self.create_timer(1, self.timer_callback)
+    def timer_callback(self):
+        if (self.time>0):
+            self.time=self.time-1
     def callback(self, msg):
+        if (self.time>0):
+            return
         print(msg.ranges[0]);
+        # print(msg.angle_increment)
+        # print(len(msg.ranges))
         msg2=Twist()
         msg2.linear.x=0.2
         msg2.angular.z=0.0;
-        minright=min(msg.ranges[0:45])
-        minleft=min(msg.ranges[315:360])
-        if minright<0.5 and minleft<0.5:
-            msg2.linear.x=-0.1
-            msg2.angular.z=0.5
-            self.pub_vel.publish(msg2)
-            return
+        minright=min(msg.ranges[15:45])
+        minleft=min(msg.ranges[315:345])
+        # if minright<0.5 and minleft<0.5:
+        #     self.time=5
+        #     msg2.linear.x=-0.1
+        #     msg2.angular.z=0.5
+        #     self.pub_vel.publish(msg2)
+        #     print("both")
+        #     return
         if minleft<0.5:
+            print('turn right')
+            self.time=5
             msg2.linear.x=-0.1
-            msg2.angular.z=-0.5      
+            msg2.angular.z=-0.5
+            self.pub_vel.publish(msg2)
+            print('publish')      
         if minright<0.5:
+            print('turn left')
+            self.time=5
             msg2.linear.x=-0.1
-            msg2.angular.z=0.5 
-        self.pub_vel.publish(msg2)
+            msg2.angular.z=0.5      
+            self.pub_vel.publish(msg2)
+            print('publish')
     def __del__(self):
         msg2=Twist()
         msg2.linear.x=0.0
