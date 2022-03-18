@@ -84,13 +84,26 @@ buttonSub.pack()
 # label3.pack(padx=10, pady=10)
 
 
-vlist = ["Run", "Random", "Automatic", "Manual"]
+# button1 = Button(rightframe, text="Automatic")
+# button1.pack(padx=3, pady=3)
+labelDiv2 = Label(
+    frame, text="_______________________________________", font=("Helvetica", 20))
+
+labelDiv2.pack()
+
+label2 = Label(
+    frame, text="Second step: Run the project\n Two options: \n *Manual \n *Automatic", font=("Helvetica", 16))
+label2.pack(padx=10, pady=10)
+vlist = ["Automatic", "Manual"]
 
 Combo = ttk.Combobox(frame, values=vlist)
 Combo.set("Select")
 Combo.pack(padx=5, pady=5)
 button3 = Button(frame, text="Submit", command=run1)
 button3.pack(padx=5, pady=5)
+
+button4 = Button(frame, text="close", command=close)
+button4.pack(padx=5, pady=5)
 
 root.title("Autonomous rover control")
 root.mainloop()
