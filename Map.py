@@ -105,16 +105,16 @@ class Map:
   def __init__(self, size, density):
     self.size = size
     self.density = density
-
-  def writeLinks(self):  
     self.link_str = ""
     self.link_str2 = ""
+  def writeLinks(self):  
+    
 
     idx = 0
     num = self.size // self.density + 1 
     margin = (self.size - (num - 1) * self.density) / 2
-    print("margin")
-    print(margin)
+    # print("margin")
+    # print(margin)
     startX = float(0 - (self.size / 2) + margin)
     startY = float(self.size / 2 - margin)
 
@@ -136,7 +136,7 @@ class Map:
       if (startX >= -0.5 and startX <= 0.5 and startY >= -0.5 and startY <= 0.5):
         startX = startX + self.density
         continue
-      print("idx" + str(idx))
+      # print("idx" + str(idx))
       # print(startX)
       # print(startY)
       link_name = "<link name='link_" +str(idx) + "'>"
