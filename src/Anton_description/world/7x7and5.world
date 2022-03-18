@@ -88,12 +88,12 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <model name='7x7'>
-      <pose>0 0 0 0 -0 0</pose>
+      <pose>-1.41399 1.05816 0 0 -0 0</pose>
       <link name='Wall_5'>
         <collision name='Wall_5_Collision'>
           <geometry>
             <box>
-              <size>7.0 0.15 1.0</size>
+              <size>7.67714 0.15 2.5</size>
             </box>
           </geometry>
           <pose>0 0 1.25 0 -0 0</pose>
@@ -115,7 +115,7 @@
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>7.0 0.15 1.0</size>
+              <size>7.67714 0.15 2.5</size>
             </box>
           </geometry>
           <material>
@@ -138,7 +138,7 @@
         <collision name='Wall_6_Collision'>
           <geometry>
             <box>
-              <size>7.0 0.15 1.0</size>
+              <size>7.61035 0.15 2.5</size>
             </box>
           </geometry>
           <pose>0 0 1.25 0 -0 0</pose>
@@ -160,7 +160,7 @@
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>7.0 0.15 1.0</size>
+              <size>7.61035 0.15 2.5</size>
             </box>
           </geometry>
           <material>
@@ -183,7 +183,7 @@
         <collision name='Wall_7_Collision'>
           <geometry>
             <box>
-              <size>7.0 0.15 1.0</size>
+              <size>7.75955 0.15 2.5</size>
             </box>
           </geometry>
           <pose>0 0 1.25 0 -0 0</pose>
@@ -205,7 +205,7 @@
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>7.0 0.15 1.0</size>
+              <size>7.75955 0.15 2.5</size>
             </box>
           </geometry>
           <material>
@@ -228,7 +228,7 @@
         <collision name='Wall_8_Collision'>
           <geometry>
             <box>
-              <size>7.0 0.15 1.0</size>
+              <size>7.61062 0.15 2.5</size>
             </box>
           </geometry>
           <pose>0 0 1.25 0 -0 0</pose>
@@ -250,7 +250,7 @@
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>7.0 0.15 1.0</size>
+              <size>7.61062 0.15 2.5</size>
             </box>
           </geometry>
           <material>
@@ -747,62 +747,62 @@
       <wall_time>1647481989 587860615</wall_time>
       <iterations>139111</iterations>
       <model name='5obstacles'>
-        <pose>0 0 0 0.5 0 -0 0</pose>
+        <pose>-1.56552 1.02499 0.5 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
-          <pose>-1.5 1.5 0.5 0 -0 0</pose>
+          <pose>-2.95253 2.68784 0.5 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='link_1'>
-          <pose>-1.5 -1.5 0.5 0 -0 0</pose>
+          <pose>-3.09282 -0.32914 0.5 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='link_2'>
-          <pose> 0 1.0 0.5 0 -0 0</pose>
+          <pose>-1.27971 0.793527 0.5 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='link_3'>
-          <pose>1.5 -1.5 0.5 0 -0 0</pose>
+          <pose>-0.36965 -0.84056 0.5 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='link_4'>
-          <pose>1.5 1.5 0.5 0 -0 0</pose>
+          <pose>-0.13289 2.81328 0.5 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='7x7'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>-1.41399 1.05816 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='Wall_5'>
-          <pose>-3.5 0 -0.75 0 0 -1.57</pose>
+          <pose>-5.15283 1.03441 0 0 0 -1.5615</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_6'>
-          <pose>0 -3.5 -0.75 0 -0 0</pose>
+          <pose>-1.37028 -2.73787 0 0 -0 0.007033</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_7'>
-          <pose>3.5 0 -0.75 0 -0 1.57</pose>
+          <pose>2.31608 1.07557 0 0 -0 1.58229</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_8'>
-          <pose>0 3.5 -0.75 0 0 0</pose>
+          <pose>-1.45773 4.8216 0 0 0 -3.13056</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -824,7 +824,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>0 0 20 -1.2e-05 1.5698 1.54017</pose>
+        <pose>6.14434 -4.47803 6.30453 0 0.275643 2.35619</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>

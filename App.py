@@ -1,3 +1,4 @@
+
 from cProfile import label
 from tkinter import *
 from tkinter import ttk
@@ -12,6 +13,7 @@ root = Tk()
 def manual():
     cmd = ['gnome-terminal', '-x', './manual.sh']
     proc = subprocess.Popen(cmd)
+
 
 
 def run():
@@ -80,15 +82,18 @@ label2 = Label(
 label2.pack(padx=10, pady=10)
 vlist = ["Automatic", "Manual"]
 
+
 Combo = ttk.Combobox(frame, values=vlist)
 Combo.set("Select")
 Combo.pack(padx=5, pady=5)
+
 
 button3 = Button(frame, text="Submit", command=run1)
 button3.pack(padx=5, pady=5)
 
 button4 = Button(frame, text="close", command=close)
 button4.pack(padx=5, pady=5)
+
 
 root.title("Autonomous rover control")
 root.mainloop()

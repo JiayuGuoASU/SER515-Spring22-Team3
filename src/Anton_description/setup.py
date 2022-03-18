@@ -30,7 +30,8 @@ setup(
             "autoControl = Anton_description.autoControl:main",
             "autoControlJointState = Anton_description.autoControlJointState:main",
             "mC = Anton_description.manullayControl:main",
-            "lmC = Anton_description.laserScanAndRotate:main"
+            "lmC = Anton_description.laserScanAndRotate:main",
+            "lmC2 = Anton_description.laserScanAndRotate2:main"
         ],
     },
 )
