@@ -1,4 +1,3 @@
-<!--Reference: https://navigation.ros.org/setup_guides/urdf/setup_urdf.html-->
 <?xml version="1.0"?>
 <robot name="Anton" xmlns:xacro="http://ros.org/wiki/xacro">
 
