@@ -41,3 +41,4 @@ new terminal for robot using laser to avoid the robot collosion and auto motion
 ```
 ros2 run Anton_description lmC
 
+ros2 launch Anton_mapping slam.launch.py
