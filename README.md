@@ -1,8 +1,6 @@
 # Anton(Rover)
 
-![Screen Shot 2022-03-22 at 15.43.30](/Users/lizhuoran/Desktop/Screen Shot 2022-03-22 at 15.43.30.png)
-
-Demo:
+Demo:https://www.youtube.com/channel/UCQLYQkLfToPyjbYGML2pBFg
 
 Taiga Link:https://tree.taiga.io/project/guitang-ser515_group3/timeline
 
@@ -18,15 +16,14 @@ Ubuntu 20.04
 
 https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Binary.html
 
-2.Run install command
+2.Clone the repo
 
-3.Clone the repo
-
-4.new a terminal and input commands below
+3.new a terminal and input commands below
 
 ```
 python3 App.py
 ```
+
 
 
 ## Windows
