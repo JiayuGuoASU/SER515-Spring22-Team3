@@ -1,12 +1,12 @@
-
-preUrdf = """<?xml version="1.0"?>
+<?xml version="1.0"?>
 <robot name="Anton" xmlns:xacro="http://ros.org/wiki/xacro">
 
  <!-- Define robot constants -->
  <!-- base property -->
-"""
-
-afterUrdf = """<!-- wheel property-->
+  <xacro:property name="base_width" value=" 3.0 "/>
+  <xacro:property name="base_length" value=" 4.0 "/>
+  <xacro:property name="base_height" value=" 2.0 "/>
+  <!-- wheel property-->
   <xacro:property name="wheel_radius" value="${base_length * 10 / 42}"/>
   <xacro:property name="wheel_width" value="${base_length * 4 / 42}"/>
   <xacro:property name="wheel_ygap" value="${base_length * 2.5 / 42}"/>
@@ -170,13 +170,13 @@ afterUrdf = """<!-- wheel property-->
 <link name="imu_link">
   <visual>
     <geometry>
-      <box size="0.1 0.1 0.1"/>
+      <box size="{base_length * 10 / 42} {base_length * 10 / 42} {base_length * 10 / 42}"/>
     </geometry>
   </visual>
 
   <collision>
     <geometry>
-      <box size="0.1 0.1 0.1"/>
+      <box size="{base_length * 10 / 42} 0{base_length * 10 / 42} {base_length * 10 / 42}"/>
     </geometry>
   </collision>
 
@@ -351,14 +351,14 @@ afterUrdf = """<!-- wheel property-->
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <box size="0.015 0.130 0.022"/>
+      <box size="${base_length * 1.5 / 42} ${base_length * 13 / 42} ${base_length * 2.2 / 42}"/>
     </geometry>
   </visual>
 
   <collision>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <box size="0.015 0.130 0.022"/>
+      <box size="${base_length * 1.5 / 42} ${base_length * 13 / 42} ${base_length * 2.2 / 42}"/>
     </geometry>
   </collision>
 
@@ -419,32 +419,4 @@ afterUrdf = """<!-- wheel property-->
     </plugin>
   </sensor>
 </gazebo>
-</robot>"""
-
-class Rover:
-
-  def __init__(self,length):
-    self.length = length
-    self.width = length * 3 / 4
-    self.height = length / 2
-    self.xacro = ""
-    self.urdf = ""
-
-  def xacroStr(self):
-  	self.xacro = """  <xacro:property name="base_width" value=" """ + str(self.width) + """ "/>
-  <xacro:property name="base_length" value=" """ + str(self.length) + """ "/>
-  <xacro:property name="base_height" value=" """ + str(self.height) + """ "/>
-  """
-
-  def writeUrdf(self):
-    self.urdf = preUrdf + self.xacro + afterUrdf
-
-    f = open("src/Anton_description/urdf/roverTest.urdf", "w+")
-    f.write(self.urdf)
-    f.close()
-
-length = input("what the length of rover you want?(in miters): ")
-rover = Rover(float(length))
-print("a rover with length "+ length +" is created")
-rover.xacroStr()
-rover.writeUrdf()
+</robot>
