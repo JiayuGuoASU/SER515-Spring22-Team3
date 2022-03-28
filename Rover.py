@@ -309,7 +309,7 @@ afterUrdf = """<!-- wheel property-->
 <joint name="lidar_joint" type="fixed">
   <parent link="base_link"/>
   <child link="lidar_link"/>
-  <origin xyz="0 0 0.12" rpy="0 0 0"/>
+  <origin xyz="0 0 ${base_height / 2 + 0.02}" rpy="0 0 0"/>
 </joint>
 
 <gazebo reference="lidar_link">
@@ -372,7 +372,7 @@ afterUrdf = """<!-- wheel property-->
 <joint name="camera_joint" type="fixed">
   <parent link="base_link"/>
   <child link="camera_link"/>
-  <origin xyz="0.215 0 0.05" rpy="0 0 0"/>
+  <origin xyz="${base_length / 2} 0 0.05" rpy="0 0 0"/>
 </joint>
 
 <link name="camera_depth_frame"/>
