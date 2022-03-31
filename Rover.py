@@ -431,10 +431,10 @@ class Rover:
     self.urdf = ""
 
   def xacroStr(self):
-  	self.xacro = """  <xacro:property name="base_width" value=" """ + str(self.width) + """ "/>
-  <xacro:property name="base_length" value=" """ + str(self.length) + """ "/>
-  <xacro:property name="base_height" value=" """ + str(self.height) + """ "/>
-  """
+    self.xacro = """  <xacro:property name="base_width" value=" """ + str(self.width) + """ "/>
+    <xacro:property name="base_length" value=" """ + str(self.length) + """ "/>
+    <xacro:property name="base_height" value=" """ + str(self.height) + """ "/>
+    """
 
   def writeUrdf(self):
     self.urdf = preUrdf + self.xacro + afterUrdf
