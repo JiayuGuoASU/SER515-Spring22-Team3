@@ -4,7 +4,7 @@ FROM althack/ros2:foxy-gazebo
 # ** [Optional] Uncomment this section to install additional packages. **
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
-&& apt-get -y install --no-install-recommends ros-foxy-robot-localization ros-foxy-slam-toolbox ros-foxy-navigation2 ros-foxy-nav2-bringup\
+&& apt-get -y install --no-install-recommends ros-foxy-robot-localization ros-foxy-slam-toolbox ros-foxy-navigation2 ros-foxy-nav2-bringup ros-foxy-turtlebot3*\
 #    #
 #    # Clean up
 && apt-get autoremove -y \
