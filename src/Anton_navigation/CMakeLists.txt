@@ -1,13 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(Anton_navigation)
 
-find_package(ament_cmake REQUIRED)
-find_package(nav2_common REQUIRED)
-find_package(navigation2 REQUIRED)
-
-nav2_package()
-install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
-install(DIRECTORY params DESTINATION share/${PROJECT_NAME})
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
