@@ -43,3 +43,6 @@ ros2 run Anton_description lmC
 
 ros2 launch Anton_mapping slam.launch.py
 ros2 launch nav2_bringup navigation_launch.py
+
+Saving Map:
+ros2 run nav2_map_server map_saver_cli -f ./src/map
