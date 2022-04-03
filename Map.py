@@ -554,6 +554,32 @@ def buildMap():
             field2.delete(0, END)
             return
 
+    print(val1)
+    print(val2)
+
+    field1.delete(0, END)
+    field2.delete(0, END)
+
+    size = val1
+    desity = val2
+    map = Map(float(size), float(desity))
+    print("a " + str(size) + " by " + size + " map with desity " + desity + " is created")
+    successLabel.config(
+        text="Map configuration successful!\n"
+        + "Size: "
+        + size
+        + " by "
+        + size
+        + "\n"
+        + "Distance between obstacles: "
+        + desity
+    )
+
+    map.writeLinks()
+    map.drawmap()
+    buttonSub.pack_forget()
+    buttonClose.pack()
+
 
 root.geometry("400x350")
 frame = Frame(root)
