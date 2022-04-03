@@ -502,7 +502,40 @@ class Map:
     f.write(tmpFile)
     f.close()
 
-size = input("what the size of map you want?(in miters): ")
+
+from curses.ascii import isdigit
+from tkinter import *
+
+root = Tk()
+
+root.geometry("400x350")
+frame = Frame(root)
+frame.pack()
+
+label1 = Label(frame, text="Enter the size of map (in meters)")
+label1.pack(padx=10, pady=4)
+
+field1 = Entry(frame, text="")
+field1.pack(padx=10, pady=4)
+
+# font size
+label2 = Label(frame, text="Enter the distance between obstacles (in meters)")
+label2.pack(padx=10, pady=4)
+
+field2 = Entry(frame, text="")
+field2.pack(padx=10, pady=4)
+
+successLabel = Label(frame, text="", fg="green")
+successLabel.pack()
+
+errorLabel = Label(frame, text="", fg="red")
+errorLabel.pack()
+
+buttonSub = Button(frame, text="Submit", command=buildMap)
+buttonSub.pack()
+
+buttonClose = Button(frame, text="Close", command=root.destroy)
+
 
 desity = input("what the distance between each obstacle you want?(in miters): ")
 
