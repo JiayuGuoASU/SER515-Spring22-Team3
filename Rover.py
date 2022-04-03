@@ -464,6 +464,16 @@ def buildRover():
         field1.delete(0, END)
         return
 
+    length = val1
+    rover = Rover(float(length))
+    print("a rover with length " + length + " is created")
+    field1.delete(0, END)
+    successLabel.config(text="Rover configuration successful!\nRover with length " + length + " is created")
+    rover.xacroStr()
+    rover.writeUrdf()
+    buttonSub.pack_forget()
+    buttonClose.pack()
+
 
 from curses.ascii import isdigit
 from tkinter import *
