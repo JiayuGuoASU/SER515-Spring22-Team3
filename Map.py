@@ -99,66 +99,61 @@ cylinderLinkGazebo = """
 </link>"""
 
 
-
 class Map:
+    def __init__(self, size, density):
+        self.size = size
+        self.density = density
+        self.link_str = ""
+        self.link_str2 = ""
 
-  def __init__(self, size, density):
-    self.size = size
-    self.density = density
-    self.link_str = ""
-    self.link_str2 = ""
-  def writeLinks(self):  
-    
+    def writeLinks(self):
 
-    idx = 0
-    num = self.size // self.density + 1 
-    margin = (self.size - (num - 1) * self.density) / 2
-    # print("margin")
-    # print(margin)
-    startX = float(0 - (self.size / 2) + margin)
-    startY = float(self.size / 2 - margin)
-
-    # print("num")
-    # print(num)
-    # print("start Y")
-    
-    # print(startY)
-    # print("check")
-    # print(0 - self.size / 2)
-    while 1:
-      if (startX > self.size / 2 - margin):
+        idx = 0
+        num = self.size // self.density + 1
+        margin = (self.size - (num - 1) * self.density) / 2
+        # print("margin")
+        # print(margin)
         startX = float(0 - (self.size / 2) + margin)
-        startY = startY - self.density
+        startY = float(self.size / 2 - margin)
 
-      if (startY < 0 - self.size / 2 + margin):
-        break
+        # print("num")
+        # print(num)
+        # print("start Y")
 
-      if (startX >= -0.5 and startX <= 0.5 and startY >= -0.5 and startY <= 0.5):
-        startX = startX + self.density
-        continue
-      # print("idx" + str(idx))
-      # print(startX)
-      # print(startY)
-      link_name = "<link name='link_" +str(idx) + "'>"
-      # print(link_name)
-      self.link_str = self.link_str + "\n" + link_name + cylinderLink
-      pose_str = "  <pose>" + str(startX) + " " + str(startY) + " 0.5 0 -0 0</pose>"
-      self.link_str2 = self.link_str2 + "\n"+ link_name + pose_str + cylinderLinkGazebo
-      startX = startX + self.density
-      
-      idx = idx + 1
-      
+        # print(startY)
+        # print("check")
+        # print(0 - self.size / 2)
+        while 1:
+            if startX > self.size / 2 - margin:
+                startX = float(0 - (self.size / 2) + margin)
+                startY = startY - self.density
 
-    # print(self.link_str)
-    # print(self.link_str2)
+            if startY < 0 - self.size / 2 + margin:
+                break
 
+            if startX >= -0.5 and startX <= 0.5 and startY >= -0.5 and startY <= 0.5:
+                startX = startX + self.density
+                continue
+            # print("idx" + str(idx))
+            # print(startX)
+            # print(startY)
+            link_name = "<link name='link_" + str(idx) + "'>"
+            # print(link_name)
+            self.link_str = self.link_str + "\n" + link_name + cylinderLink
+            pose_str = "  <pose>" + str(startX) + " " + str(startY) + " 0.5 0 -0 0</pose>"
+            self.link_str2 = self.link_str2 + "\n" + link_name + pose_str + cylinderLinkGazebo
+            startX = startX + self.density
 
+            idx = idx + 1
 
-  def drawmap(self):
-    f = open("src/Anton_description/world/modelTest.sdf", "w+")
+        # print(self.link_str)
+        # print(self.link_str2)
 
+    def drawmap(self):
+        f = open("src/Anton_description/world/modelTest.sdf", "w+")
 
-    tmpFile =  """<sdf version='1.7'>
+        tmpFile = (
+            """<sdf version='1.7'>
   <world name='default'>
     <light name='sun' type='directional'>
       <cast_shadows>1</cast_shadows>
@@ -253,7 +248,9 @@ class Map:
         <collision name='Wall_5_Collision'>
           <geometry>
             <box>
-              <size>""" + str(self.size) + """ 0.15 1.0</size>
+              <size>"""
+            + str(self.size)
+            + """ 0.15 1.0</size>
             </box>
           </geometry>
           <pose>0 0 1.25 0 -0 0</pose>
@@ -275,7 +272,9 @@ class Map:
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>""" + str(self.size) + """ 0.15 1.0</size>
+              <size>"""
+            + str(self.size)
+            + """ 0.15 1.0</size>
             </box>
           </geometry>
           <material>
@@ -298,7 +297,9 @@ class Map:
         <collision name='Wall_6_Collision'>
           <geometry>
             <box>
-              <size>""" + str(self.size) + """ 0.15 1.0</size>
+              <size>"""
+            + str(self.size)
+            + """ 0.15 1.0</size>
             </box>
           </geometry>
           <pose>0 0 1.25 0 -0 0</pose>
@@ -320,7 +321,9 @@ class Map:
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>""" + str(self.size) + """ 0.15 1.0</size>
+              <size>"""
+            + str(self.size)
+            + """ 0.15 1.0</size>
             </box>
           </geometry>
           <material>
@@ -343,7 +346,9 @@ class Map:
         <collision name='Wall_7_Collision'>
           <geometry>
             <box>
-              <size>""" + str(self.size) + """ 0.15 1.0</size>
+              <size>"""
+            + str(self.size)
+            + """ 0.15 1.0</size>
             </box>
           </geometry>
           <pose>0 0 1.25 0 -0 0</pose>
@@ -365,7 +370,9 @@ class Map:
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>""" + str(self.size) + """ 0.15 1.0</size>
+              <size>"""
+            + str(self.size)
+            + """ 0.15 1.0</size>
             </box>
           </geometry>
           <material>
@@ -388,7 +395,9 @@ class Map:
         <collision name='Wall_8_Collision'>
           <geometry>
             <box>
-              <size>""" + str(self.size) + """ 0.15 1.0</size>
+              <size>"""
+            + str(self.size)
+            + """ 0.15 1.0</size>
             </box>
           </geometry>
           <pose>0 0 1.25 0 -0 0</pose>
@@ -410,7 +419,9 @@ class Map:
           <pose>0 0 1.25 0 -0 0</pose>
           <geometry>
             <box>
-              <size>""" + str(self.size) + """ 0.15 1.0</size>
+              <size>"""
+            + str(self.size)
+            + """ 0.15 1.0</size>
             </box>
           </geometry>
           <material>
@@ -432,7 +443,9 @@ class Map:
       <static>1</static>
     </model>
     <model name='5obstacles'>
-      """ + self.link_str + """
+      """
+            + self.link_str
+            + """
       <static>0</static>
       <allow_auto_disable>1</allow_auto_disable>
       <pose>-1.56552 1.02499 0.5 0 -0 0</pose>
@@ -445,31 +458,41 @@ class Map:
       <model name='5obstacles'>
         <pose>0 0 0 0.5 0 -0 0</pose>
         <scale>1 1 1</scale>
-        """ + self.link_str2 + """
+        """
+            + self.link_str2
+            + """
       </model>
       <model name='7x7'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='Wall_5'>
-          <pose>-""" + str(self.size/2) + """ 0 -0.75 0 0 -1.57</pose>
+          <pose>-"""
+            + str(self.size / 2)
+            + """ 0 -0.75 0 0 -1.57</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_6'>Wall
-          <pose>0 -""" + str(self.size/2) + """ -0.75 0 -0 0</pose>
+          <pose>0 -"""
+            + str(self.size / 2)
+            + """ -0.75 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_7'>
-          <pose>""" + str(self.size/2) + """ 0 -0.75 0 -0 1.57</pose>
+          <pose>"""
+            + str(self.size / 2)
+            + """ 0 -0.75 0 -0 1.57</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name='Wall_8'>
-          <pose>0 """ + str(self.size/2) + """ -0.75 0 0 0</pose>
+          <pose>0 """
+            + str(self.size / 2)
+            + """ -0.75 0 0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -498,15 +521,39 @@ class Map:
     </gui>
   </world>
 </sdf>"""
+        )
 
-    f.write(tmpFile)
-    f.close()
+        f.write(tmpFile)
+        f.close()
 
 
 from curses.ascii import isdigit
 from tkinter import *
 
 root = Tk()
+
+
+def buildMap():
+    val1 = field1.get()
+    val2 = field2.get()
+    errorLabel.config(text="")
+    successLabel.config(text="")
+    if val1 == "" or val2 == "":
+        errorLabel.config(text="Invalid value(s)")
+        return
+
+    for i in range(0, len(val1)):
+        if not isdigit(val1[i]):
+            errorLabel.config(text="Enter a valid value for the size of the map")
+            field1.delete(0, END)
+            return
+
+    for i in range(0, len(val2)):
+        if not isdigit(val2[i]):
+            errorLabel.config(text="Please valid value for distance between obstacles")
+            field2.delete(0, END)
+            return
+
 
 root.geometry("400x350")
 frame = Frame(root)
@@ -537,9 +584,5 @@ buttonSub.pack()
 buttonClose = Button(frame, text="Close", command=root.destroy)
 
 
-desity = input("what the distance between each obstacle you want?(in miters): ")
-
-map = Map(float(size),float(desity))
-print("a " + str(size) + " by " + size + " map with desity "+ desity +" is created")
-map.writeLinks()
-map.drawmap()
+root.title("Map customization")
+root.mainloop()

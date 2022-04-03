@@ -451,6 +451,20 @@ class Rover:
         f.close()
 
 
+def buildRover():
+    val1 = field1.get()
+    errorLabel.config(text="")
+    successLabel.config(text="")
+    if val1 == "":
+        errorLabel.config(text="Please enter a value")
+        return
+
+    if not val1.isdecimal() or not val1.isdigit():
+        errorLabel.config(text="Please enter a number for length")
+        field1.delete(0, END)
+        return
+
+
 from curses.ascii import isdigit
 from tkinter import *
 
