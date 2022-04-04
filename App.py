@@ -105,7 +105,6 @@ label3 = Label(
 label3.pack(padx=10, pady=10)
 vlist = ["Automatic", "Manual"]
 
-
 Combo = ttk.Combobox(frame, values=vlist)
 Combo.set("Select")
 Combo.pack(padx=5, pady=5)
@@ -114,9 +113,18 @@ Combo.pack(padx=5, pady=5)
 button3 = Button(frame, text="Submit", command=run1)
 button3.pack(padx=5, pady=5)
 
+
+labelDiv4 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
+labelDiv4.pack()
+
+label4 = Label(frame, text="Get the resultant map", font=("Helvetica", 16))
+label4.pack(padx=10, pady=10)
+
+bubtton4 = Button(frame, text="Result", command=getSLAM)
+bubtton4.pack()
+
 button4 = Button(frame, text="close", command=close)
 button4.pack(padx=5, pady=5)
-
 
 root.title("Autonomous rover control")
 root.mainloop()
