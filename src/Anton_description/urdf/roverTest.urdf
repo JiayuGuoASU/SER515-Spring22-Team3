@@ -3,21 +3,21 @@
 
  <!-- Define robot constants -->
  <!-- base property -->
-  <xacro:property name="base_width" value="0.31"/>
-  <xacro:property name="base_length" value="0.42"/>
-  <xacro:property name="base_height" value="0.18"/>
- <!-- wheel property-->
-  <xacro:property name="wheel_radius" value="0.10"/>
-  <xacro:property name="wheel_width" value="0.04"/>
-  <xacro:property name="wheel_ygap" value="0.025"/>
-  <xacro:property name="wheel_zoff" value="0.05"/>
-  <xacro:property name="wheel_xoff" value="0.12"/>
+  <xacro:property name="base_width" value=" 0.75 "/>
+  <xacro:property name="base_length" value=" 1.0 "/>
+  <xacro:property name="base_height" value=" 0.5 "/>
+  <!-- wheel property-->
+  <xacro:property name="wheel_radius" value="${base_length * 10 / 42}"/>
+  <xacro:property name="wheel_width" value="${base_length * 4 / 42}"/>
+  <xacro:property name="wheel_ygap" value="${base_length * 2.5 / 42}"/>
+  <xacro:property name="wheel_zoff" value="${base_length * 5 / 42}"/>
+  <xacro:property name="wheel_xoff" value="${base_length * 12 / 42}"/>
   <!-- caster property-->
-  <xacro:property name="caster_xoff" value="0.14"/>
+  <xacro:property name="caster_xoff" value="${base_length / 3}"/>
 
   <!-- laser property-->
-  <xacro:property name="laser_radius" value="0.1"/>
-  <xacro:property name="laser_length" value="0.1"/>
+  <xacro:property name="laser_radius" value="${base_length * 10 / 42}"/>
+  <xacro:property name="laser_length" value="${base_length * 10 / 42}"/>
   <!-- Define intertial property macros  -->
   <xacro:macro name="box_inertia" params="m w h d">
     <inertial>
@@ -193,7 +193,7 @@
   <sensor name="imu_sensor" type="imu">
    <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
       <ros>
-        <!-- <namespace>/demo</namespace> -->
+        <namespace>/demo</namespace>
         <remapping>~/out:=imu</remapping>
       </ros>
       <initial_orientation_as_reference>false</initial_orientation_as_reference>
@@ -260,7 +260,7 @@
 <gazebo>
   <plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
     <ros>
-      <!-- <namespace>/demo</namespace> -->
+      <namespace>/demo</namespace>
     </ros>
 
     <!-- wheels -->
@@ -309,7 +309,7 @@
 <joint name="lidar_joint" type="fixed">
   <parent link="base_link"/>
   <child link="lidar_link"/>
-  <origin xyz="0 0 0.12" rpy="0 0 0"/>
+  <origin xyz="0 0 ${base_height / 2 + 0.02}" rpy="0 0 0"/>
 </joint>
 
 <gazebo reference="lidar_link">
@@ -372,7 +372,7 @@
 <joint name="camera_joint" type="fixed">
   <parent link="base_link"/>
   <child link="camera_link"/>
-  <origin xyz="0.215 0 0.05" rpy="0 0 0"/>
+  <origin xyz="${base_length / 2} 0 0.05" rpy="0 0 0"/>
 </joint>
 
 <link name="camera_depth_frame"/>

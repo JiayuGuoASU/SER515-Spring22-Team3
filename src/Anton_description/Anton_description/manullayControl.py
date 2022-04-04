@@ -57,7 +57,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     node = rclpy.create_node(NODE_NAME)
-    publisher = node.create_publisher(Twist, "/demo/cmd_vel", 10)
+    publisher = node.create_publisher(Twist, "/cmd_vel", 10)
 
     th = threading.Thread(target=handle_keyboard, args=(publisher,))
     th.start()

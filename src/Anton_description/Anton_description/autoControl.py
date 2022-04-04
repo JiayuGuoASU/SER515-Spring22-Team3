@@ -8,7 +8,7 @@ from geometry_msgs.msg import Twist
 class WriterNode(Node):
     def __init__(self, name):
         super().__init__(name)
-        self.pub_vel = self.create_publisher(Twist, "/demo/cmd_vel", 10)
+        self.pub_vel = self.create_publisher(Twist, "/cmd_vel", 10)
 
         self.i = 0
         timer_period = 5

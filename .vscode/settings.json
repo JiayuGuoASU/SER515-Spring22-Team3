@@ -70,4 +70,5 @@
         ".vscode-insiders",
         ".devcontainer/devcontainer.json"
     ],
+    "ros.distro": "foxy",
 }

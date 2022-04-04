@@ -22,10 +22,10 @@ def run():
 
 def auto():
     subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
-
-
+    
 def getSLAM():
     subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./downloadmap.sh; read"])
+
 
 
 def close():
@@ -73,7 +73,7 @@ labelDiv1 = Label(frame, text="_______________________________________", font=("
 labelDiv1.pack()
 labelSub = Label(frame, text="First step: Configuration", font=("Helvetica", 16))
 labelSub.pack(padx=10, pady=10)
-# font size
+
 lablel11 = Label(frame, text="Map configuration", font=("Helvetica", 16))
 lablel11.pack(padx=10, pady=10)
 
