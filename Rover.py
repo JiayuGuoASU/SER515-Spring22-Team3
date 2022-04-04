@@ -1,4 +1,3 @@
-
 preUrdf = """<?xml version="1.0"?>
 <robot name="Anton" xmlns:xacro="http://ros.org/wiki/xacro">
 
@@ -421,30 +420,86 @@ afterUrdf = """<!-- wheel property-->
 </gazebo>
 </robot>"""
 
+
 class Rover:
+    def __init__(self, length):
+        self.length = length
+        self.width = length * 3 / 4
+        self.height = length / 2
+        self.xacro = ""
+        self.urdf = ""
 
-  def __init__(self,length):
-    self.length = length
-    self.width = length * 3 / 4
-    self.height = length / 2
-    self.xacro = ""
-    self.urdf = ""
-
-  def xacroStr(self):
-    self.xacro = """  <xacro:property name="base_width" value=" """ + str(self.width) + """ "/>
-    <xacro:property name="base_length" value=" """ + str(self.length) + """ "/>
-    <xacro:property name="base_height" value=" """ + str(self.height) + """ "/>
+    def xacroStr(self):
+        self.xacro = (
+            """  <xacro:property name="base_width" value=" """
+            + str(self.width)
+            + """ "/>
+    <xacro:property name="base_length" value=" """
+            + str(self.length)
+            + """ "/>
+    <xacro:property name="base_height" value=" """
+            + str(self.height)
+            + """ "/>
     """
+        )
 
-  def writeUrdf(self):
-    self.urdf = preUrdf + self.xacro + afterUrdf
+    def writeUrdf(self):
+        self.urdf = preUrdf + self.xacro + afterUrdf
 
-    f = open("src/Anton_description/urdf/roverTest.urdf", "w+")
-    f.write(self.urdf)
-    f.close()
+        f = open("src/Anton_description/urdf/roverTest.urdf", "w+")
+        f.write(self.urdf)
+        f.close()
 
-length = input("what the length of rover you want?(in miters): ")
-rover = Rover(float(length))
-print("a rover with length "+ length +" is created")
-rover.xacroStr()
-rover.writeUrdf()
+
+def buildRover():
+    val1 = field1.get()
+    errorLabel.config(text="")
+    successLabel.config(text="")
+    if val1 == "":
+        errorLabel.config(text="Please enter a value")
+        return
+
+    if not val1.isdecimal() or not val1.isdigit():
+        errorLabel.config(text="Please enter a number for length")
+        field1.delete(0, END)
+        return
+
+    length = val1
+    rover = Rover(float(length))
+    print("a rover with length " + length + " is created")
+    field1.delete(0, END)
+    successLabel.config(text="Rover configuration successful!\nRover with length " + length + " is created")
+    rover.xacroStr()
+    rover.writeUrdf()
+    buttonSub.pack_forget()
+    buttonClose.pack()
+
+
+from curses.ascii import isdigit
+from tkinter import *
+
+root = Tk()
+
+root.geometry("350x250")
+frame = Frame(root)
+frame.pack()
+
+label1 = Label(frame, text="Length of Rover (in meters):")
+label1.pack(padx=10, pady=4)
+
+field1 = Entry(frame, text="")
+field1.pack(padx=10, pady=4)
+
+successLabel = Label(frame, text="", fg="green")
+successLabel.pack()
+
+errorLabel = Label(frame, text="", fg="red")
+errorLabel.pack()
+
+buttonSub = Button(frame, text="Submit", command=buildRover)
+buttonSub.pack()
+
+buttonClose = Button(frame, text="Close", command=root.destroy)
+
+root.title("Rover customization")
+root.mainloop()
