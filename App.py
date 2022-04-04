@@ -11,16 +11,21 @@ root = Tk()
 
 
 def manual():
-    cmd = ["gnome-terminal", "-x", "./manual.sh"]
+    cmd = ["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"]
     proc = subprocess.Popen(cmd)
 
 
 def run():
-    subprocess.call(["gnome-terminal", "-x", "./fullrun.sh"])
+    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./fullrun.sh; read"])
+    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./slam.sh; read"])
 
 
 def auto():
-    subprocess.call(["gnome-terminal", "-x", "./automatic.sh"])
+    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
+
+
+def getSLAM():
+    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./downloadmap.sh; read"])
 
 
 def close():
