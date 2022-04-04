@@ -7,7 +7,7 @@ import os
 
 def generate_launch_description():
     package_name = 'Anton_description'
-    urdf_name = 'Anton_description.urdf'
+    urdf_name = 'roverTest.urdf'
     rviz_configuration_name = 'urdf_config.rviz'
     pkg_share = launch_ros.substitutions.FindPackageShare(package= package_name).find(package_name)
     default_model_path = os.path.join(pkg_share, f'urdf/{urdf_name}')
