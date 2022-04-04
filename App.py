@@ -75,11 +75,13 @@ buttonSub.pack()
 labelDiv2 = Label(
     frame, text="_______________________________________", font=("Helvetica", 20))
 
-labelDiv2.pack()
+labelDiv3 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
+labelDiv3.pack()
 
-label2 = Label(
-    frame, text="Second step: Run the project\n Two options: \n *Manual \n *Automatic", font=("Helvetica", 16))
-label2.pack(padx=10, pady=10)
+label3 = Label(
+    frame, text="Third step: Run the project\n Two options: \n *Manual \n *Automatic", font=("Helvetica", 16)
+)
+label3.pack(padx=10, pady=10)
 vlist = ["Automatic", "Manual"]
 
 
