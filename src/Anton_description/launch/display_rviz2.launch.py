@@ -8,11 +8,11 @@ import os
 def generate_launch_description():
     package_name = 'Anton_description'
     urdf_name = 'Anton_description.urdf'
-    rviz_configuration_name = 'urdf_config2.rviz'
+    rviz_configuration_name = 'urdf_config.rviz'
     pkg_share = launch_ros.substitutions.FindPackageShare(package= package_name).find(package_name)
     default_model_path = os.path.join(pkg_share, f'urdf/{urdf_name}')
     default_rviz_config_path = os.path.join(pkg_share, f'rviz/{rviz_configuration_name}')
-    world_path=os.path.join(pkg_share, 'world/my_world2.sdf'),
+    world_path=os.path.join(pkg_share, 'world/modelTest.sdf'),
 
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
@@ -25,12 +25,7 @@ def generate_launch_description():
         name='joint_state_publisher',
         condition=launch.conditions.UnlessCondition(LaunchConfiguration('gui'))
     )
-    # joint_state_publisher_gui_node = launch_ros.actions.Node(
-    #     package='joint_state_publisher_gui',
-    #     executable='joint_state_publisher_gui',
-    #     name='joint_state_publisher_gui',
-    #     condition=launch.conditions.IfCondition(LaunchConfiguration('gui'))
-    # )
+
     rviz_node = launch_ros.actions.Node(
         package='rviz2',
         executable='rviz2',
@@ -64,7 +59,6 @@ def generate_launch_description():
         launch.actions.DeclareLaunchArgument(name='use_sim_time', default_value='True',
                                             description='Flag to enable use_sim_time'),
         joint_state_publisher_node,
-        # joint_state_publisher_gui_node,
         robot_state_publisher_node,
         spawn_entity,
         robot_localization_node,

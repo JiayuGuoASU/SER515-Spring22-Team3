@@ -18,7 +18,7 @@ def generate_launch_description():
     declare_slam_params_file_cmd = DeclareLaunchArgument(
         'slam_params_file',
         default_value=os.path.join(get_package_share_directory("Anton_mapping"),
-                                   'config', 'mapper_params_online_sync.yaml'),
+                                   'config', 'slam.yaml'),
         description='Full path to the ROS2 parameters file to use for the slam_toolbox node')
 
     start_sync_slam_toolbox_node = Node(
