@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "fullrun.sh"
+cd ..
 source /opt/ros/foxy/setup.bash
 cd SER515-Spring22-Team3/
 colcon build

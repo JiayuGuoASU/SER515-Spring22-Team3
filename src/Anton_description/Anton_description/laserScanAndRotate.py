@@ -8,7 +8,7 @@ from sensor_msgs.msg import LaserScan
 class WriterNode(Node):
     def __init__(self, name):
         super().__init__(name)
-        self.pub_vel = self.create_publisher(Twist, "/demo/cmd_vel", 10)
+        self.pub_vel = self.create_publisher(Twist, "/cmd_vel", 10)
         self.sub_vel = self.create_subscription(LaserScan, "/scan", self.callback , 10);
         self.msg=Twist();
         self.msg.linear.x=0.2;
