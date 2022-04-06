@@ -192,7 +192,6 @@ afterUrdf = """<!-- wheel property-->
   <sensor name="imu_sensor" type="imu">
    <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
       <ros>
-        <namespace>/demo</namespace>
         <remapping>~/out:=imu</remapping>
       </ros>
       <initial_orientation_as_reference>false</initial_orientation_as_reference>
@@ -259,7 +258,6 @@ afterUrdf = """<!-- wheel property-->
 <gazebo>
   <plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
     <ros>
-      <namespace>/demo</namespace>
     </ros>
 
     <!-- wheels -->
