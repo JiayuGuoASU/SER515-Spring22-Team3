@@ -1,5 +1,3 @@
-# Copyright 4/9/22 LI ZHUORAN. All rights reserved.
-
 from abc import ABCMeta, abstractmethod
 
 
