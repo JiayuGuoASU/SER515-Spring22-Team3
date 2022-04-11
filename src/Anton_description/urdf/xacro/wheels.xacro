@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">
+ 
+<xacro:macro name="cylinder_inertia" params="m r h">
+  <inertial>
+    <mass value="${m}"/>
+
+    <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0" iyy="${m*(3*r*r+h*h)/12}" iyz="0" izz="${m*r*r/2}"/>
+  </inertial>
+</xacro:macro>
+
+<xacro:macro name="wheel" params="prefix reflect">
+  <link name="${prefix}_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="0.005"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="0.005"/>
+      </geometry>
+    </collision>
+
+    <xacro:cylinder_inertia m="10" r="${wheel_radius}" h="0.005"/>
+  </link>
+
+  <joint name="${prefix}_wheel_joint" type="continuous">
+    <axis xyz="0 1 0" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="${prefix}_wheel"/>
+    <origin xyz="${wheel_joint_offset} ${((base_width/2)+base_wheel_gap)*reflect} -0.005" rpy="0 0 0"/>
+  </joint>
+</xacro:macro>
+
+</robot>

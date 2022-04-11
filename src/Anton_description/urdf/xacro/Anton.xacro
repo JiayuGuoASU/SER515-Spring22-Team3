@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find Anton_description)/urdf/xacro/dimensions.xacro"/>
+  <xacro:include filename="$(find Anton_description)/urdf/xacro/chasis.xacro"/>
+  <xacro:include filename="$(find Anton_description)/urdf/xacro/wheels.xacro"/>
+  <xacro:include filename="$(find Anton_description)/urdf/xacro/caster.xacro"/>
+  <xacro:include filename="$(find Anton_description)/urdf/xacro/laser.xacro"/>
+  <xacro:include filename="$(find Anton_description)/urdf/xacro/camera.xacro"/>
+  <xacro:include filename="$(find Anton_description)/urdf/xacro/AntonPlugins.xacro"/>
+</robot>

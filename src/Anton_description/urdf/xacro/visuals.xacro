@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<robot name="Anton" xmlns:xacro="https://www.ros.org/wiki/xacro" >
+  <!-- Define color for robot parts -->
+  <gazebo reference="base_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="left_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="right_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+</robot>
