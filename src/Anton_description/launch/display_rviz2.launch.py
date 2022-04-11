@@ -1,5 +1,5 @@
 import launch
-from launch.substitutions import Command, LaunchConfiguration
+from launch.substitutions import Command, LaunchConfiguration, ParameterValue
 import launch_ros
 import os
 
@@ -17,7 +17,12 @@ def generate_launch_description():
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        parameters=[{'robot_description': Command(['xacro ', LaunchConfiguration('model')])}]
+        # parameters=[{'robot_description': Command(['xacro ', LaunchConfiguration('model')])}]
+        
+        parameters=[{'robot_description': ParameterValue(
+            Command(['xacro ', "./src/Anton_description/urdf/xacro/Anton.xacro"]), value_type=str
+        )
+        }]
     )
     joint_state_publisher_node = launch_ros.actions.Node(
         package='joint_state_publisher',

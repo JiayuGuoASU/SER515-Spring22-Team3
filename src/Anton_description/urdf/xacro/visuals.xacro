@@ -4,10 +4,10 @@
   <gazebo reference="base_link">
     <material>Gazebo/Orange</material>
   </gazebo>
-  <gazebo reference="left_wheel">
+  <gazebo reference="drivewhl_l_link">
     <material>Gazebo/Blue</material>
   </gazebo>
-  <gazebo reference="right_wheel">
+  <gazebo reference="drivewhl_r_link">
     <material>Gazebo/Blue</material>
   </gazebo>
 </robot>

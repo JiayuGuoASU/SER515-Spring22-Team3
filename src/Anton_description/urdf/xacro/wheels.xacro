@@ -2,40 +2,55 @@
 
 <robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">
  
-<xacro:macro name="cylinder_inertia" params="m r h">
-  <inertial>
-    <mass value="${m}"/>
+  <xacro:macro name="cylinder_inertia" params="m r h">
+      <inertial>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+        <mass value="${m}"/>
+        <inertia ixx="${(m/12) * (3*r*r + h*h)}" ixy = "0" ixz = "0" iyy="${(m/12) * (3*r*r + h*h)}" iyz = "0" izz="${(m/2) * (r*r)}"/>
+      </inertial>
+  </xacro:macro>
 
-    <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0" iyy="${m*(3*r*r+h*h)/12}" iyz="0" izz="${m*r*r/2}"/>
-  </inertial>
-</xacro:macro>
+  <xacro:macro name="wheel" params="prefix x_reflect y_reflect">
+    <link name="${prefix}_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <material name="Gray">
+          <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+      </visual>
+      	
 
-<xacro:macro name="wheel" params="prefix reflect">
-  <link name="${prefix}_wheel">
-    <visual>
-      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
-      <geometry>
-        <cylinder radius="${wheel_radius}" length="0.005"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <surface>
+        <friction>
+          <ode>
+            <mu>0.05</mu>
+            <mu2>0.05</mu2>
+          </ode>
+        </friction>
+      </surface>
+      </collision>
 
-    <collision>
-      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
-      <geometry>
-        <cylinder radius="${wheel_radius}" length="0.005"/>
-      </geometry>
-    </collision>
+      <xacro:cylinder_inertia m="5" r="${wheel_radius}" h="${wheel_width}"/>
 
-    <xacro:cylinder_inertia m="10" r="${wheel_radius}" h="0.005"/>
-  </link>
+    </link>
 
-  <joint name="${prefix}_wheel_joint" type="continuous">
-    <axis xyz="0 1 0" rpy="0 0 0" />
-    <parent link="base_link"/>
-    <child link="${prefix}_wheel"/>
-    <origin xyz="${wheel_joint_offset} ${((base_width/2)+base_wheel_gap)*reflect} -0.005" rpy="0 0 0"/>
-  </joint>
-</xacro:macro>
+    <joint name="${prefix}_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${prefix}_link"/>
+      <origin xyz="${x_reflect*wheel_xoff} ${y_reflect*(base_width/2+wheel_ygap)} ${-wheel_zoff}" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:wheel prefix="drivewhl_l" x_reflect="-1" y_reflect="1" />
+  <xacro:wheel prefix="drivewhl_r" x_reflect="-1" y_reflect="-1" />
 
 </robot>
