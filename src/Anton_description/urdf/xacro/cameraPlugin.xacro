@@ -8,7 +8,7 @@
         <horizontal_fov>1.3962634</
          horizontal_fov> -->
         <horizontal_fov>1.57</horizontal_fov>  
-        <!— ~90 degrees -->
+        <!-- ~90 degrees -->
         <image>
           <width>800</width>
           <height>800</height>
@@ -33,11 +33,9 @@
        filename="libgazebo_ros_camera.so">
           <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>ai_rover_remastered/camera1</   
-         cameraName>
+        <cameraName>ai_rover_remastered/camera1</cameraName>
         <imageTopicName>image_raw</imageTopicName>
-        <cameraInfoTopicName>camera_info</
-         cameraInfoTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera_link</frameName>
         <hackBaseline>0.07</hackBaseline>
         <distortionK1>0.0</distortionK1>
