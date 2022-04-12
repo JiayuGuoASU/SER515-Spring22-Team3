@@ -1,28 +1,29 @@
 import launch
-from launch.substitutions import Command, LaunchConfiguration, ParameterValue
+from launch.substitutions import Command, LaunchConfiguration
 import launch_ros
 import os
+import xacro
 
 # Reference: https://navigation.ros.org/setup_guides/urdf/setup_urdf.html
 
 def generate_launch_description():
     package_name = 'Anton_description'
-    urdf_name = 'roverTest.urdf'
+    urdf_name = 'Anton_description.urdf'
     rviz_configuration_name = 'urdf_config.rviz'
     pkg_share = launch_ros.substitutions.FindPackageShare(package= package_name).find(package_name)
     default_model_path = os.path.join(pkg_share, f'urdf/{urdf_name}')
     default_rviz_config_path = os.path.join(pkg_share, f'rviz/{rviz_configuration_name}')
     world_path=os.path.join(pkg_share, 'world/modelTest.sdf'),
 
+    # assert os.path.exists(default_model_path), "The box_bot.xacro doesnt exist in "+str(default_model_path)
+    # robot_description_config = xacro.process_file(default_model_path)
+    # robot_desc = robot_description_config.toxml()
+    # print(robot_desc)
+
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        # parameters=[{'robot_description': Command(['xacro ', LaunchConfiguration('model')])}]
-        
-        parameters=[{'robot_description': ParameterValue(
-            Command(['xacro ', "./src/Anton_description/urdf/xacro/Anton.xacro"]), value_type=str
-        )
-        }]
+        parameters=[{'robot_description': Command(['xacro ', LaunchConfiguration('model')])}]
     )
     joint_state_publisher_node = launch_ros.actions.Node(
         package='joint_state_publisher',
