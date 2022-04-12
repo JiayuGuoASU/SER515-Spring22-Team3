@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="IMUsizeX" value="0.01"/>
+  <xacro:property name="IMUsizeY" value="0.01"/>
+  <xacro:property name="IMUsizeZ" value="0.01"/>
+  <xacro:property name="IMUoriginX" value="0"/>
+  <xacro:property name="IMUoriginY" value="0"/>
+  <xacro:property name="IMUoriginZ" value="0.015"/>
+  <link name="imu_link">
+    <visual>
+      <geometry>
+        <box size="${IMUsizeX} ${IMUsizeY} ${IMUsizeZ}"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="${IMUsizeX} ${IMUsizeY} ${IMUsizeZ}"/>
+      </geometry>
+    </collision>
+    <xacro:box_inertia m="0.2" w="${IMUsizeX}" h="${IMUsizeY}" d="${IMUsizeZ}"/>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <origin xyz="${IMUoriginX} ${IMUoriginY} ${IMUoriginZ}" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link= imu_link" />
+  </joint>
+</robot>

@@ -28,6 +28,7 @@ class Link:
         self.collisionEle = self.root.createElement('collision')
         self.name = name
         self.link.setAttribute('name', name)
+        self.root.appendChild(self.link)
 
     def addVisual(self, geometry, material):
         visualEle = self.root.createElement('visual')
@@ -36,6 +37,7 @@ class Link:
         self.link.appendChild(visualEle)
 
     def addCollision(self, geometry):
+        self.collisionEle = self.root.createElement('collision')
         self.collisionEle.appendChild(geometry)
         self.link.appendChild(self.collisionEle)
 
@@ -161,10 +163,10 @@ geo.sphere(2)
 geo.generateInertia()
 mat = Material("Gray", "0.1 0.1 1.0 0.8", rover.root)
 link.addVisual(geo.geometry, mat.material)
-link.addSurfaceToConflict(0.5)
+# link.addSurfaceToConflict(0.5)
 link.addCollision(geo.geometry)
 link.addInertia(geo.inertialEle)
-rover.addLink(link)
+# rover.addLink(link)
 
 link2 = Link("testLink2", rover.root)
 geo2 = Geometry(5, rover.root)
@@ -172,10 +174,10 @@ geo2.box(3, 4, 5)
 geo2.generateInertia()
 mat2 = Material("Yellow", "0.1 0.1 1.0 0.8", rover.root)
 link2.addVisual(geo2.geometry, mat2.material)
-link2.addSurfaceToConflict(0.5)
+# link2.addSurfaceToConflict(0.5)
 link2.addCollision(geo2.geometry)
 link2.addInertia(geo2.inertialEle)
-rover.addLink(link2)
+# rover.addLink(link2)
 
 joint = Joint("testJoint", "fixed", link, link2, rover.root)
 rover.addJoint(joint)

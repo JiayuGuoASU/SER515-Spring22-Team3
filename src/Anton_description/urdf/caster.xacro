@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="sphere_inertia" params="m r">
+  <inertial>
+    <mass value="${m}"/>
+    <inertia ixx="${2.0*m*(r*r)/5.0}" ixy="0.0" ixz="0.0" iyy="${2.0*m*(r*r)/5.0}" iyz="0.0" izz="${2.0*m*(r*r)/5.0}"/>
+  </inertial>
+</xacro:macro>
+
+<link name="front_caster">
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <sphere radius="${caster_wheel_radius}"/>
+    </geometry>
+  </visual>
+
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <sphere radius="${caster_wheel_radius}"/>
+    </geometry>
+  </collision>
+
+  <xacro:sphere_inertia m="5" r="${caster_wheel_radius}"/>
+</link>
+
+<joint name="caster_joint" type="continuous">
+  <axis xyz="0 1 0" rpy="0 0 0" />
+  <parent link="base_link"/>
+  <child link="front_caster"/>
+
+  <origin xyz="${caster_wheel_joint_offset} 0 -${caster_wheel_radius+0.005}" rpy="0 0 0"/>
+</joint>
+
+</robot>
