@@ -8,9 +8,26 @@ class rover_factory:
         self.caster = caster
 
     def config(self):
-        self.base.config(self)
-        self.wheel.config(self)
-        self.caster.config(self)
+        file = open('Anton.xacro', 'w')
+        file.write('<?xml version="1.0"?>\n')
+        file.write('\n<robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">\n')
+        base = self.base.config(self)
+        wheel = self.wheel.config(self)
+        caster = self.caster.config(self)
+        file.write('\t')
+        file.write(base)
+        file.write('\n')
+        file.write('\t')
+        file.write(wheel)
+        file.write('\n')
+        file.write('\t')
+        file.write(caster)
+        file.write('\n')
+        file.write('\t<xacro:include filename="./chasis.xacro"/>\n\t<xacro:include '
+                   'filename="./wheels.xacro"/>\n\t<xacro:include filename="./caster.xacro"/>\n\t<xacro:include '
+                   'filename="./laser.xacro"/>\n\t<xacro:include filename="./camera.xacro"/>\n\t<xacro:include '
+                   'filename="./AntonPlugins.xacro"/>\n</robot>')
+                   
 
 
 class Base(metaclass=ABCMeta):
@@ -21,17 +38,20 @@ class Base(metaclass=ABCMeta):
 
 class Base1(Base):
     def config(self, rover):
-        print("<xacro:property name=base_width value=0.31/>")
+        base_dimensions = '<xacro:include filename="./basedimensions1.xacro"/>'
+        return base_dimensions
 
 
 class Base2(Base):
     def config(self, rover):
-        print("<xacro:property name=base_width value=10/>")
+        base_dimensions = '<xacro:include filename="./basedimensions2.xacro"/>'
+        return base_dimensions
 
 
 class Base3(Base):
     def config(self, rover):
-        print("<xacro:property name=base_width value=0.20/>")
+        base_dimensions = '<xacro:include filename="./basedimensions3.xacro"/>'
+        return base_dimensions
 
 
 class Wheel(metaclass=ABCMeta):
@@ -42,17 +62,20 @@ class Wheel(metaclass=ABCMeta):
 
 class Wheel1(Wheel):
     def config(self, rover):
-        print("<xacro:property name=wheel_radius value=0.10/>")
+        wheel_dimensions = '<xacro:include filename="./wheeldimensions1.xacro"/>'
+        return wheel_dimensions
 
 
 class Wheel2(Wheel):
     def config(self, rover):
-        print("<xacro:property name=wheel_radius value=0.10/>")
+        wheel_dimensions = '<xacro:include filename="./wheeldimensions2.xacro"/>'
+        return wheel_dimensions
 
 
 class Wheel3(Wheel):
     def config(self, rover):
-        print("<xacro:property name=wheel_radius value=0.10/>")
+        wheel_dimensions = '<xacro:include filename="./wheeldimensions3.xacro"/>'
+        return wheel_dimensions
 
 
 class Caster(metaclass=ABCMeta):
@@ -63,17 +86,20 @@ class Caster(metaclass=ABCMeta):
 
 class Caster1(Caster):
     def config(self, rover):
-        print("<xacro:property name=caster_width value=0.15/>")
+        caster_dimensions = '<xacro:include filename="./casterdimensions1.xacro"/>'
+        return caster_dimensions
 
 
 class Caster2(Caster):
     def config(self, rover):
-        print("<xacro:property name=caster_length value=0.21/>")
+        caster_dimensions = '<xacro:include filename="./casterdimensions2.xacro"/>'
+        return caster_dimensions
 
 
 class Caster3(Caster):
     def config(self, rover):
-        print("<xacro:property name=caster_xxx value=0.11/>")
+        caster_dimensions = '<xacro:include filename="./casterdimensions3.xacro"/>'
+        return caster_dimensions
 
 
 class Factory(metaclass=ABCMeta):
