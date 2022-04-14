@@ -2,42 +2,42 @@
 
 <robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:macro name="box_inertia" params="m w h d">
-  <inertial>
-    <mass value="${m}"/>
-    <inertia ixx="${m / 12.0 * (d*d + h*h)}" ixy="0.0" ixz="0.0" iyy="${m / 12.0 * (w*w + h*h)}" iyz="0.0" izz="${m / 12.0 * (w*w + d*d)}"/>
-  </inertial>
-</xacro:macro>
+  <xacro:macro name="box_inertia" params="m w h d">
+    <inertial>
+      <mass value="${m}"/>
+      <inertia ixx="${m / 12.0 * (d*d + h*h)}" ixy="0.0" ixz="0.0" iyy="${m / 12.0 * (w*w + h*h)}" iyz="0.0" izz="${m / 12.0 * (w*w + d*d)}"/>
+    </inertial>
+  </xacro:macro>
 
-<link name="base_footprint">
-  <xacro:box_inertia m="20" w="0.001" h="0.001" d="0.001"/>
-  <visual>
-    <origin xyz="0 0 0" rpy="0 0 0" />
-    <geometry>
-       <box size="0.001 0.001 0.001" />
-    </geometry>
-  </visual>
-</link>
+  <link name="base_footprint">
+    <xacro:box_inertia m="20" w="0.001" h="0.001" d="0.001"/>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+         <box size="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
 
-<link name="base_link">
-  <xacro:box_inertia m="10" w="${base_length}" h="${base_width}" d="0.01"/>
-  <visual>
-    <geometry>
-      <box size="${base_length} ${base_width} 0.01"/>
-    </geometry>
-  </visual>
+  <link name="base_link">
+    <xacro:box_inertia m="10" w="${base_length}" h="${base_width}" d="${base_height}"/>
+    <visual>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+    </visual>
 
-  <collision>
-    <geometry>
-      <box size="${base_length} ${base_width} 0.01"/>
-    </geometry>
-  </collision>
-</link>
+    <collision>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+    </collision>
+  </link>
 
-<joint name="base_joint" type="fixed">
-  <origin xyz="0 0 ${wheel_radius + 0.005}" rpy="0 0 0" />
-  <parent link="base_footprint"/>
-  <child link="base_link" />
-</joint>
+  <joint name="base_joint" type="fixed">
+    <origin xyz="0 0 ${wheel_radius + 0.005}" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="base_footprint" />
+  </joint>
 
 </robot>

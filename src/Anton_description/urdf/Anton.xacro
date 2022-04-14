@@ -2,7 +2,9 @@
 
 <robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="./dimensions.xacro"/>
+  <xacro:include filename="./chasis_dimension_1.xacro"/>
+  <xacro:include filename="./wheels_dimension_1.xacro"/>
+  <xacro:include filename="./caster_dimension_1.xacro"/>
   <xacro:include filename="./chasis.xacro"/>
   <xacro:include filename="./wheels.xacro"/>
   <xacro:include filename="./caster.xacro"/>

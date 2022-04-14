@@ -13,7 +13,7 @@ def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(package= package_name).find(package_name)
     default_model_path = os.path.join(pkg_share, f'urdf/{urdf_name}')
     default_rviz_config_path = os.path.join(pkg_share, f'rviz/{rviz_configuration_name}')
-    world_path=os.path.join(pkg_share, 'world/cafe.sdf'),
+    world_path=os.path.join(pkg_share, 'world/modelTest.sdf'),
 
     # assert os.path.exists(default_model_path), "The box_bot.xacro doesnt exist in "+str(default_model_path)
     # robot_description_config = xacro.process_file(default_model_path)

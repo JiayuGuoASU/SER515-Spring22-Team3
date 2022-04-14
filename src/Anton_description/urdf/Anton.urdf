@@ -19,23 +19,23 @@
   <link name="base_link">
     <inertial>
       <mass value="10"/>
-      <inertia ixx="0.08016666666666668" ixy="0.0" ixz="0.0" iyy="0.2270833333333333" iyz="0.0" izz="0.14708333333333332"/>
+      <inertia ixx="0.10708333333333334" ixy="0.0" ixz="0.0" iyy="0.2270833333333333" iyz="0.0" izz="0.174"/>
     </inertial>
     <visual>
       <geometry>
-        <box size="0.42 0.31 0.01"/>
+        <box size="0.42 0.31 0.18"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <box size="0.42 0.31 0.01"/>
+        <box size="0.42 0.31 0.18"/>
       </geometry>
     </collision>
   </link>
   <joint name="base_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0 0 0.10500000000000001"/>
-    <parent link="base_footprint"/>
-    <child link="base_link"/>
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
   </joint>
   <link name="drivewhl_l_link">
     <visual>
@@ -127,11 +127,11 @@
       <inertia ixx="0.005000000000000001" ixy="0.0" ixz="0.0" iyy="0.005000000000000001" iyz="0.0" izz="0.005000000000000001"/>
     </inertial>
   </link>
-  <joint name="caster_joint" type="continuous">
+  <joint name="caster_joint" type="fixed">
     <axis rpy="0 0 0" xyz="0 1 0"/>
     <parent link="base_link"/>
     <child link="front_caster"/>
-    <origin rpy="0 0 0" xyz="-0.052 0 -0.055"/>
+    <origin rpy="0 0 0" xyz="0.14 0 -0.09"/>
   </joint>
   <link name="lidar_link">
     <inertial>
@@ -175,7 +175,7 @@
     </inertial>
   </link>
   <joint name="camera_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.165 0 -0.035"/>
+    <origin rpy="0 0 0" xyz="0.165 0 0.05"/>
     <parent link="base_link"/>
     <child link="camera_link"/>
   </joint>
