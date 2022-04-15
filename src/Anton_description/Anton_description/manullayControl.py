@@ -25,23 +25,23 @@ def handle_keyboard(publisher):
             msg.linear.x = 0.2
             msg.angular.z = 0.0
             publisher.publish(msg)
-            print(" \n>>> command is published : w")
+            print(" \n>>> command is published : go straight")
 
         elif menu == 's':
             msg.linear.x = -0.2
             msg.angular.z = 0.0
             publisher.publish(msg)
-            print(" \n>>> command is published : s")
+            print(" \n>>> command is published : back")
         elif menu == 'a':
             msg.linear.x = 0.0
-            msg.angular.z = 0.4
+            msg.angular.z = 0.6
             publisher.publish(msg)
-            print(" \n>>> command is published : s")
+            print(" \n>>> command is published : turn left")
         elif menu == 'd':
             msg.linear.x = 0.0
-            msg.angular.z = -0.4
+            msg.angular.z = -0.6
             publisher.publish(msg)
-            print(" \n>>> command is published : d")
+            print(" \n>>> command is published : turn right")
         elif menu == 'q':
             msg.linear.x = 0.0
             msg.angular.z = 0.0
