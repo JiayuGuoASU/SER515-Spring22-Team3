@@ -1,77 +1,110 @@
 from abc import ABCMeta, abstractmethod
+import subprocess
+import os
 
 
-class Base(metaclass=ABCMeta):
-    def __init__(self, wheel, caster):
+class rover_factory:
+    def __init__(self, base, wheel, caster):
+        self.base = base
         self.wheel = wheel
         self.caster = caster
 
-    @abstractmethod
     def config(self):
+        file = open('./src/Anton_description/urdf/Anton.xacro', 'w')
+        file.write('<?xml version="1.0"?>\n')
+        file.write('\n<robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">\n')
+        base = self.base.config(self)
+        wheel = self.wheel.config(self)
+        caster = self.caster.config(self)
+        file.write('\t')
+        file.write(base)
+        file.write('\n')
+        file.write('\t')
+        file.write(wheel)
+        file.write('\n')
+        file.write('\t')
+        file.write(caster)
+        file.write('\n')
+        file.write('\t<xacro:include filename="./chasis.xacro"/>\n\t<xacro:include '
+                   'filename="./wheels.xacro"/>\n\t<xacro:include filename="./caster.xacro"/>\n\t<xacro:include '
+                   'filename="./laser.xacro"/>\n\t<xacro:include filename="./camera.xacro"/>\n\t<xacro:include '
+                   'filename="./AntonPlugins.xacro"/>\n</robot>')
+        os.popen('xacro ./src/Anton_description/urdf/Anton.xacro > ./src/Anton_description/urdf/Anton.urdf')
+        #subprocess.call(["cd src, cd Anton_description, cd urdf; xacro Anton.xacro > Anton.urdf; read"])
+        #subprocess.call(["gnome-terminal", "--", "bash", "-c", "source /opt/ros/foxy/setup.bash; read"])
+        #subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd src; cd Anton_description; cd urdf; xacro Anton.xacro > Anton.urdf; read"])
+
+
+class Base(metaclass=ABCMeta):
+    @abstractmethod
+    def config(self, rover):
         pass
 
 
 class Base1(Base):
-    def config(self):
-        print("<xacro:property name=base_width value=0.31/>")
-        self.wheel.config(self)
-        self.caster.config(self)
+    def config(self, rover):
+        base_dimensions = '<xacro:include filename="./chasis_dimension_1.xacro"/>'
+        return base_dimensions
 
 
 class Base2(Base):
-    def config(self):
-        print("<xacro:property name=base_width value=10/>")
-        self.wheel.config(self)
-        self.caster.config(self)
+    def config(self, rover):
+        base_dimensions = '<xacro:include filename="./chasis_dimension_2.xacro"/>'
+        return base_dimensions
 
 
 class Base3(Base):
-    def config(self):
-        print("<xacro:property name=base_width value=0.20/>")
-        self.wheel.config(self)
-        self.caster.config(self)
+    def config(self, rover):
+        base_dimensions = '<xacro:include filename="./chasis_dimension_3.xacro"/>'
+        return base_dimensions
 
 
 class Wheel(metaclass=ABCMeta):
     @abstractmethod
-    def config(self, base):
+    def config(self, rover):
         pass
 
 
 class Wheel1(Wheel):
-    def config(self, base):
-        print("<xacro:property name=wheel_radius value=0.10/>")
+    def config(self, rover):
+        wheel_dimensions = '<xacro:include filename="./wheels_dimension_1.xacro"/>'
+        return wheel_dimensions
 
 
 class Wheel2(Wheel):
-    def config(self, base):
-        print("<xacro:property name=wheel_radius value=0.10/>")
+    def config(self, rover):
+        wheel_dimensions = '<xacro:include filename="./wheels_dimension_2.xacro"/>'
+        return wheel_dimensions
 
 
 class Wheel3(Wheel):
-    def config(self, base):
-        print("<xacro:property name=wheel_radius value=0.10/>")
+    def config(self, rover):
+        wheel_dimensions = '<xacro:include filename="./wheels_dimension_3.xacro"/>'
+        return wheel_dimensions
 
 
 class Caster(metaclass=ABCMeta):
     @abstractmethod
-    def config(self, base):
+    def config(self, rover):
         pass
 
 
 class Caster1(Caster):
-    def config(self, base):
-        print("<xacro:property name=caster_width value=0.15/>")
+    def config(self, rover):
+        caster_dimensions = '<xacro:include filename="./caster_dimension_1.xacro"/>'
+        return caster_dimensions
 
 
 class Caster2(Caster):
-    def config(self, base):
-        print("<xacro:property name=caster_length value=0.21/>")
+    def config(self, rover):
+        caster_dimensions = '<xacro:include filename="./caster_dimension_2.xacro"/>'
+        return caster_dimensions
 
 
 class Caster3(Caster):
-    def config(self, base):
-        print("<xacro:property name=caster_xxx value=0.11/>")
+    def config(self, rover):
+        caster_dimensions = '<xacro:include filename="./caster_dimension_3.xacro"/>'
+        return caster_dimensions
 
 
 class Factory(metaclass=ABCMeta):
@@ -113,21 +146,19 @@ class WheelFactory(Factory):
 
 
 class BaseFactory(Factory):
-    def __init__(self, component_name, wheel, caster):
+    def __init__(self, component_name):
         self.component_name = component_name
-        self.wheel = wheel
-        self.caster = caster
 
     def create_component(self):
         if self.component_name == "1":
-            base1 = Base1(self.wheel, self.caster)
-            base1.config()
+            base1 = Base1()
+            return base1
         elif self.component_name == "2":
-            base2 = Base2(self.wheel, self.caster)
-            base2.config()
+            base2 = Base2()
+            return base2
         elif self.component_name == "3":
-            base3 = Base3(self.wheel,  self.caster)
-            base3.config()
+            base3 = Base3()
+            return base3
 
 
 def main():
@@ -152,8 +183,11 @@ def main():
     print("3 : base3")
     print("4 : customize")
     base_type = input("option : ")
-    base_factory = BaseFactory(base_type, wheal_object, caster_object)
-    base_factory.create_component()
+    base_factory = BaseFactory(base_type)
+    base_object = base_factory.create_component()
+
+    rover = rover_factory(base_object, wheal_object, caster_object)
+    rover.config()
 
 
 if __name__ == "__main__":
