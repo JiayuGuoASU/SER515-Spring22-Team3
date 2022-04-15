@@ -4,6 +4,7 @@ from tkinter import ttk
 import subprocess
 from subprocess import call
 import os
+import algorithm
 
 from numpy import size
 
@@ -18,14 +19,19 @@ def manual():
 def run():
     subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./fullrun.sh; read"])
     subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./slam.sh; read"])
+    gazeboProcess = subprocess.Popen("./script/fullrun.sh", stdin=PIPE, stderr=PIPE, stdout=PIPE, shell=True)
 
 
 def auto():
     subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
-    
+
+
 def getSLAM():
     subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./downloadmap.sh; read"])
 
+
+def downloadMap():
+    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./downloadmap.sh; read"])
 
 
 def close():
@@ -52,7 +58,12 @@ def mapConfig():
 
 def roverConfig():
     # run MapWindow.py
-    call(["python3", "Rover.py"])
+    call(["python3", "assemble_rover.py"])
+
+
+def controlAlgorithm():
+    # run MapWindow.py
+    call(["python3", "alogrithm.py"])
 
 
 root.geometry("500x700")
@@ -74,8 +85,11 @@ labelDiv1.pack()
 labelSub = Label(frame, text="First step: Configuration", font=("Helvetica", 16))
 labelSub.pack(padx=10, pady=10)
 
-lablel11 = Label(frame, text="Map configuration", font=("Helvetica", 16))
+lablel11 = Label(frame, text="Map configuration:", font=("Helvetica", 16))
 lablel11.pack(padx=10, pady=10)
+
+bubtton12 = Button(frame, text="Download map", command=downloadMap)
+bubtton12.pack()
 
 bubtton11 = Button(frame, text="Map configuration", command=mapConfig)
 bubtton11.pack()
@@ -103,14 +117,8 @@ label3 = Label(
     frame, text="Third step: Run the project\n Two options: \n *Manual \n *Automatic", font=("Helvetica", 16)
 )
 label3.pack(padx=10, pady=10)
-vlist = ["Automatic", "Manual"]
 
-Combo = ttk.Combobox(frame, values=vlist)
-Combo.set("Select")
-Combo.pack(padx=5, pady=5)
-
-
-button3 = Button(frame, text="Submit", command=run1)
+button3 = Button(frame, text="Select control", command=controlAlgorithm)
 button3.pack(padx=5, pady=5)
 
 

@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 import subprocess
 from subprocess import call
+from tkinter import *
+from tkinter.ttk import Combobox
 
 
 class Strategy(metaclass=ABCMeta):
@@ -54,7 +56,34 @@ class ContextFactory:
             strategy.strategy(self.parameter)
 
 
-parameter = "many parameters"
-combo_get = "Manual"
-context_factory = ContextFactory(combo_get, parameter)
-context_factory.do_strategy()
+def handle_button_click(strategy, parameters):
+    context = ContextFactory(strategy, parameters)
+    context.do_strategy()
+    successLabel.config(text="Successfully executed " + strategy + " with parameters " + parameters)
+    buttonSub.pack_forget()
+    buttonClose.pack()
+
+
+root = Tk()
+root.geometry("500x300")
+frame = Frame(root)
+frame.pack()
+
+controlList = ["Manual", "Automatic", "navigation", "run"]
+combo = Combobox(root, values=controlList)
+combo.current(0)
+combo.pack()
+
+buttonSub = Button(frame, text="Submit", command=handle_button_click(combo.get(), "parameters"))
+buttonSub.pack()
+
+successLabel = Label(frame, text="", fg="green")
+successLabel.pack()
+
+errorLabel = Label(frame, text="", fg="red")
+errorLabel.pack()
+
+buttonClose = Button(frame, text="Close", command=root.destroy)
+
+root.title("Autonomous rover control")
+root.mainloop()
