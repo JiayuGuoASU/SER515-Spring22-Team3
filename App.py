@@ -10,77 +10,71 @@ from numpy import size
 
 root = Tk()
 
-processes = []
-
 
 def manual():
     try:
-        tmp = subprocess.Popen(["xterm", "-e", "./script/manual.sh"])
-        processes.append(tmp.pid)
+        subprocess.Popen(["xterm", "-e", "./script/manual.sh"])
+
     except:
-        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"])
-        processes.append(tmp)
+        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"])
 
 
 def run():
     try:
-        tmp = subprocess.Popen(["xterm", "-e", "./script/fullrun.sh"])
-        processes.append(tmp)
+        subprocess.Popen(["xterm", "-e", "./script/fullrun.sh"])
+
     except:
-        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./fullrun.sh; read"])
+        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./fullrun.sh; read"])
+    button21.config(state=NORMAL)
 
 
 def auto():
     try:
-        tmp = subprocess.Popen(["xterm", "-e", "./script/automatic.sh"])
-        processes.append(tmp)
+        subprocess.Popen(["xterm", "-e", "./script/automatic.sh"])
+
     except:
-        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
-        processes.append(tmp)
+        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
 
 
 def getSLAM():
     try:
-        tmp = subprocess.Popen(["xterm", "-e", "./script/slam.sh"])
-        processes.append(tmp)
+        subprocess.Popen(["xterm", "-e", "./script/slam.sh"])
+
     except:
-        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./slam.sh; read"])
-        processes.append(tmp)
+        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./slam.sh; read"])
+    button3.config(state=NORMAL)
 
 
 def downloadMap():
     try:
-        tmp = subprocess.Popen(["xterm", "-e", "./script/download_map.sh"])
-        processes.append(tmp)
+        subprocess.Popen(["xterm", "-e", "./script/download_map.sh"])
+
     except:
-        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./download_map.sh; read"])
-        processes.append(tmp)
+        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./download_map.sh; read"])
 
 
 def close():
-    for process in processes:
-        os.kill(process, signal.SIGINT)
-    sys.exit(0)
+    root.destroy()
 
 
 def mapConfig():
     mapName = mapCombo.get() + ".sdf"
     call(["python3", "MapChoose.py", mapName])
+    button12.config(state=NORMAL)
 
 
 def roverConfig():
     call(["python3", "assemble_rover.py"])
+    buttonSub.config(state=NORMAL)
 
 
 def controlAlgorithm():
     algo = algoCombo.get()
     print("you select Algorithm: " + str(algo))
-    tmp = subprocess.Popen(["python3", "algorithm.py", str(algo)])
-    processes.append(tmp.pid)
-    # subprocess.Popen(["xterm", "-e","python3 algorithm.py"])
+    subprocess.Popen(["python3", "algorithm.py", str(algo)])
 
 
-root.geometry("500x800")
+root.geometry("550x850")
 frame = Frame(root)
 frame.pack()
 
@@ -91,15 +85,15 @@ rightframe = Frame(root)
 rightframe.pack(side=RIGHT)
 
 labelMain = Label(frame, text="Anton control option", font=("Helvetica", 20))
-labelMain.pack(padx=10, pady=10)
+labelMain.pack()
 
 labelDiv1 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
-
 labelDiv1.pack()
-labelSub = Label(frame, text="First step: Configuration", font=("Helvetica", 16))
+
+labelSub = Label(frame, text="Step 1: Configuration", font=("Helvetica", 16))
 labelSub.pack(padx=10, pady=10)
 
-lablel11 = Label(frame, text="Choose a Map and Click Build Map:", font=("Helvetica", 16))
+lablel11 = Label(frame, text="Choose a Map and build it:", font=("Helvetica", 12))
 lablel11.pack(padx=10, pady=10)
 
 mapList = ["RobotCupField", "GasStation", "Museum"]
@@ -109,32 +103,42 @@ mapCombo.current(0)
 mapCombo.state(["readonly"])
 mapCombo.pack()
 
-bubtton11 = Button(frame, text="Build Map", command=mapConfig)
-bubtton11.pack()
+button11 = Button(frame, text="Build Map", command=mapConfig)
+button11.pack(padx=10, pady=10)
 
-label12 = Label(frame, text="Rover configuration", font=("Helvetica", 16))
+label12 = Label(frame, text="Rover configuration:", font=("Helvetica", 12))
 label12.pack(padx=10, pady=10)
 
-bubtton12 = Button(frame, text="Rover configuration", command=roverConfig)
-bubtton12.pack()
+button12 = Button(frame, text="Configure", command=roverConfig)
+button12.pack()
+# disable button
+button12.config(state=DISABLED)
 
 labelDiv2 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
 labelDiv2.pack()
 
-label2 = Label(frame, text="Second step: Build the project", font=("Helvetica", 16))
+label2 = Label(frame, text="Step 2: Build the project", font=("Helvetica", 16))
 label2.pack(padx=10, pady=10)
 
 buttonSub = Button(frame, text="Build & launch", command=run)
 buttonSub.pack()
+buttonSub.config(state=DISABLED)
 
-bubtton4 = Button(frame, text="Start Slam", command=getSLAM)
-bubtton4.pack()
+labelDiv211 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
+labelDiv211.pack()
 
-labelDiv3 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
-labelDiv3.pack()
+label21 = Label(frame, text="Step 3: Launch SLAM", font=("Helvetica", 16))
+label21.pack(padx=10, pady=10)
 
-label3 = Label(frame, text="Third step: Run the Robot with moving algorithm", font=("Helvetica", 16))
-label3.pack(padx=10, pady=10)
+button21 = Button(frame, text="Start Slam", command=getSLAM)
+button21.pack()
+button21.config(state=DISABLED)
+
+labelDiv31 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
+labelDiv31.pack()
+
+label31 = Label(frame, text="Step 4: Run the Robot with moving algorithm", font=("Helvetica", 16))
+label31.pack(padx=10, pady=10)
 
 algoList = ["Manual", "Automatic"]
 algoCombo = Combobox(frame, values=algoList)
@@ -146,6 +150,7 @@ algoCombo.pack(padx=10, pady=4)
 
 button3 = Button(frame, text="Select control", command=controlAlgorithm)
 button3.pack(padx=5, pady=5)
+button3.config(state=DISABLED)
 
 
 labelDiv4 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
