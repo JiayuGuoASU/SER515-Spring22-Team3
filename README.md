@@ -18,7 +18,9 @@ https://docs.ros.org/en/foxy/Installation/Ubuntu-Install-Binary.html
 
 2.Clone the repo
 
-3.new a terminal and input commands below
+3.run install.sh
+
+4.new a terminal and input commands below
 
 ```
 python3 App.py
@@ -41,21 +43,7 @@ python3 App.py
 6.New a terminal and input commands below
 
 ```
-colcon build
-. install/setup.bash
-ros2 launch Anton_description display_rviz2.launch.py
-```
-
-new terminal for robot control auntomatically
-
-```
-ros2 run Anton_description autoControl
-```
-
-new terminal for robot manuallly control
-
-```
-ros2 run Anton_description mC
+python3 App.py
 ```
 
 
