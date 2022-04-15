@@ -1,4 +1,6 @@
 from abc import ABCMeta, abstractmethod
+import subprocess
+from subprocess import call
 
 
 class Strategy(metaclass=ABCMeta):
@@ -9,7 +11,7 @@ class Strategy(metaclass=ABCMeta):
 
 class ManuallyControl(Strategy):
     def strategy(self, parameters):
-        print("manually control")
+        subprocess.call["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"]
 
 
 class Navigation(Strategy):
@@ -19,7 +21,7 @@ class Navigation(Strategy):
 
 class AutoPilot(Strategy):
     def strategy(self, parameters):
-        print("autoPilot")
+        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
 
 
 class Default(Strategy):
