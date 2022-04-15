@@ -5,6 +5,7 @@ from tkinter import *
 from tkinter.ttk import Combobox
 import sys
 
+
 class Strategy(metaclass=ABCMeta):
     @abstractmethod
     def strategy(self):
@@ -13,8 +14,10 @@ class Strategy(metaclass=ABCMeta):
 
 class ManuallyControl(Strategy):
     def strategy(self):
-        # subprocess.call["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"]
-        subprocess.Popen(["xterm", "-e","./script/manual.sh"])
+        try:
+            tmp = subprocess.Popen(["xterm", "-e", "./script/manual.sh"])
+        except:
+            tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"])
 
 
 class Navigation(Strategy):
@@ -24,8 +27,10 @@ class Navigation(Strategy):
 
 class AutoPilot(Strategy):
     def strategy(self):
-        # subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
-        subprocess.Popen(["xterm", "-e","./script/automatic.sh"])
+        try:
+            tmp = subprocess.Popen(["xterm", "-e", "./script/automatic.sh"])
+        except:
+            tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
 
 
 class Default(Strategy):
@@ -53,6 +58,7 @@ class ContextFactory:
         elif self.strategy == "run":
             strategy = Default()
             strategy.strategy()
+
 
 algo = sys.argv[1]
 context_factory = ContextFactory(algo)

@@ -12,32 +12,56 @@ root = Tk()
 
 processes = []
 
+
 def manual():
-    
-    tmp = subprocess.Popen(["xterm", "-e","./script/manual.sh"])
-    processes.append(tmp)
+    try:
+        tmp = subprocess.Popen(["xterm", "-e", "./script/manual.sh"])
+        processes.append(tmp.pid)
+    except:
+        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"])
+        processes.append(tmp)
+
 
 def run():
-    tmp = subprocess.Popen(["xterm", "-e","./script/fullrun.sh"])
-    processes.append(tmp)
+    try:
+        tmp = subprocess.Popen(["xterm", "-e", "./script/fullrun.sh"])
+        processes.append(tmp)
+    except:
+        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./fullrun.sh; read"])
+
 
 def auto():
-    tmp = subprocess.Popen(["xterm", "-e","./script/automatic.sh"])
-    processes.append(tmp)
+    try:
+        tmp = subprocess.Popen(["xterm", "-e", "./script/automatic.sh"])
+        processes.append(tmp)
+    except:
+        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
+        processes.append(tmp)
+
 
 def getSLAM():
-    tmp = subprocess.Popen(["xterm", "-e","./script/slam.sh"])
-    processes.append(tmp)
+    try:
+        tmp = subprocess.Popen(["xterm", "-e", "./script/slam.sh"])
+        processes.append(tmp)
+    except:
+        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./slam.sh; read"])
+        processes.append(tmp)
 
 
 def downloadMap():
-    tmp = subprocess.Popen(["xterm", "-e","./script/downloadmap.sh"])
-    processes.append(tmp)
+    try:
+        tmp = subprocess.Popen(["xterm", "-e", "./script/download_map.sh"])
+        processes.append(tmp)
+    except:
+        tmp = subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./download_map.sh; read"])
+        processes.append(tmp)
+
 
 def close():
     for process in processes:
         os.kill(process, signal.SIGINT)
     sys.exit(0)
+
 
 def mapConfig():
     mapName = mapCombo.get() + ".sdf"
@@ -54,6 +78,7 @@ def controlAlgorithm():
     tmp = subprocess.Popen(["python3", "algorithm.py", str(algo)])
     processes.append(tmp.pid)
     # subprocess.Popen(["xterm", "-e","python3 algorithm.py"])
+
 
 root.geometry("500x800")
 frame = Frame(root)
@@ -108,9 +133,7 @@ bubtton4.pack()
 labelDiv3 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
 labelDiv3.pack()
 
-label3 = Label(
-    frame, text="Third step: Run the Robot with moving algorithm", font=("Helvetica", 16)
-)
+label3 = Label(frame, text="Third step: Run the Robot with moving algorithm", font=("Helvetica", 16))
 label3.pack(padx=10, pady=10)
 
 algoList = ["Manual", "Automatic"]
@@ -130,7 +153,6 @@ labelDiv4.pack()
 
 label4 = Label(frame, text="END", font=("Helvetica", 16))
 label4.pack(padx=10, pady=10)
-
 
 
 button4 = Button(frame, text="close", command=close)
