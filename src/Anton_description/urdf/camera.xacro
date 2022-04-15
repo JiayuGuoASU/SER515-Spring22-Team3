@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 
 <robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:property name="camera_size_x" value="0.03"/>
-    <xacro:property name="camera_size_y" value="0.03"/>
-    <xacro:property name="camera_size_z" value="0.04"/>
-    <xacro:property name="camera_origin_x" value="0.165"/>
+    <xacro:property name="camera_size_x" value="0.015"/>
+    <xacro:property name="camera_size_y" value="0.13"/>
+    <xacro:property name="camera_size_z" value="0.022"/>
+    <xacro:property name="camera_origin_x" value="${base_length/2}"/>
     <xacro:property name="camera_origin_y" value="0"/>
-    <xacro:property name="camera_origin_z" value="-0.035"/>
+    <xacro:property name="camera_origin_z" value="${base_height/2}"/>
     <link name="camera_link">
         <visual>
             <geometry>
@@ -19,7 +19,7 @@
                 <box size="${camera_size_x} ${camera_size_y} ${camera_size_z}"/>
             </geometry>
         </collision>
-        <xacro:box_inertia m="0.2" w="${camera_size_x}" h="${camera_size_y}" d="${camera_size_z}"/>
+        <xacro:box_inertia m="0.035" w="${camera_size_x}" h="${camera_size_y}" d="${camera_size_z}"/>
     </link>
     <joint name="camera_joint" type="fixed">
         <origin xyz="${camera_origin_x} ${camera_origin_y} ${camera_origin_z}" rpy="0 0 0" />

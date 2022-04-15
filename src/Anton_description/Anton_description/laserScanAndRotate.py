@@ -19,7 +19,7 @@ class WriterNode(Node):
         msg2=Twist()
         msg2.linear.x=0.2
         msg2.angular.z=0.0;
-        if min(msg.ranges[0:45])<0.5 or min(msg.ranges[315:360])<0.5:
+        if min(msg.ranges[0:45])<0.4 or min(msg.ranges[315:360])<0.4:
             msg2.linear.x=-0.1
             msg2.angular.z=0.5
         self.pub_vel.publish(msg2)
