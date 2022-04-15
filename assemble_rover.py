@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 import subprocess
+import os
 
 
 class rover_factory:
@@ -9,7 +10,7 @@ class rover_factory:
         self.caster = caster
 
     def config(self):
-        file = open('./src/Anton_description/urdf/Anton_xacro', 'w')
+        file = open('./src/Anton_description/urdf/Anton.xacro', 'w')
         file.write('<?xml version="1.0"?>\n')
         file.write('\n<robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">\n')
         base = self.base.config(self)
@@ -28,8 +29,10 @@ class rover_factory:
                    'filename="./wheels.xacro"/>\n\t<xacro:include filename="./caster.xacro"/>\n\t<xacro:include '
                    'filename="./laser.xacro"/>\n\t<xacro:include filename="./camera.xacro"/>\n\t<xacro:include '
                    'filename="./AntonPlugins.xacro"/>\n</robot>')
-        subprocess.call(["gnome-terminal", "--", "bash", "-c", "source /opt/ros/foxy/setup.bash; read"])
-        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd src; cd Anton_description; cd urdf; xacro Anton.xacro > Anton1.urdf; read"])
+        os.popen('xacro ./src/Anton_description/urdf/Anton.xacro > ./src/Anton_description/urdf/Anton.urdf')
+        #subprocess.call(["cd src, cd Anton_description, cd urdf; xacro Anton.xacro > Anton.urdf; read"])
+        #subprocess.call(["gnome-terminal", "--", "bash", "-c", "source /opt/ros/foxy/setup.bash; read"])
+        #subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd src; cd Anton_description; cd urdf; xacro Anton.xacro > Anton.urdf; read"])
 
 
 class Base(metaclass=ABCMeta):
