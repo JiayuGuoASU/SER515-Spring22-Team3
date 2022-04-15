@@ -11,7 +11,8 @@ class Strategy(metaclass=ABCMeta):
 
 class ManuallyControl(Strategy):
     def strategy(self, parameters):
-        subprocess.call["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"]
+        # subprocess.call["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"]
+        subprocess.Popen(["xterm", "-e","./script/manual.sh"])
 
 
 class Navigation(Strategy):
@@ -21,7 +22,8 @@ class Navigation(Strategy):
 
 class AutoPilot(Strategy):
     def strategy(self, parameters):
-        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
+        # subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
+        subprocess.Popen(["xterm", "-e","./script/automatic.sh"])
 
 
 class Default(Strategy):
