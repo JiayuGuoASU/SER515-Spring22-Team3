@@ -1,10 +1,11 @@
 from cProfile import label
 from tkinter import *
 from tkinter import ttk
+from tkinter.ttk import Combobox
 import subprocess
 from subprocess import call
 import os
-import algorithm
+# import algorithm
 
 from numpy import size
 
@@ -12,59 +13,42 @@ root = Tk()
 
 
 def manual():
-    cmd = ["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"]
-    proc = subprocess.Popen(cmd)
+    # cmd = ["gnome-terminal", "--", "bash", "-c", "cd script; ./manual.sh; read"]
+    subprocess.Popen(["xterm", "-e","./script/manual.sh"])
+    # proc = subprocess.Popen(cmd)
 
 
 def run():
-    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./fullrun.sh; read"])
-    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./slam.sh; read"])
-    gazeboProcess = subprocess.Popen("./script/fullrun.sh", stdin=PIPE, stderr=PIPE, stdout=PIPE, shell=True)
-
+    subprocess.Popen(["xterm", "-e","./script/fullrun.sh"])
+    subprocess.Popen(["xterm", "-e","./script/manual.sh"])
 
 def auto():
-    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./automatic.sh; read"])
+    subprocess.Popen(["xterm", "-e","./script/automatic.sh"])
 
 
 def getSLAM():
-    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./downloadmap.sh; read"])
+    subprocess.Popen(["xterm", "-e","./script/downloadmap.sh"])
 
 
 def downloadMap():
-    subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./downloadmap.sh; read"])
-
+    subprocess.Popen(["xterm", "-e","./script/downloadmap.sh"])
 
 def close():
     os.system("kill -9 " + str(PPID))
 
-
-def run1():
-    if Combo.get() == "Manual":
-        print("Manual")
-        run1.ppid = manual()
-        print(run1.ppid)
-    elif Combo.get() == "Automatic":
-        auto()
-        print("Automatic")
-    elif Combo.get() == "Run":
-        print("Run")
-        run()
-
-
 def mapConfig():
-    # run MapWindow.py
-    call(["python3", "Map.py"])
+    call(["python3", "MapChoose.py"])
 
 
 def roverConfig():
-    # run MapWindow.py
     call(["python3", "assemble_rover.py"])
 
 
 def controlAlgorithm():
-    # run MapWindow.py
-    call(["python3", "alogrithm.py"])
-
+    algo = algoCombo.get()
+    print("you select Algorithm: " + str(algo))
+    call(["python3", "algorithm.py", str(algo)])
+    # subprocess.Popen(["xterm", "-e","python3 algorithm.py"])
 
 root.geometry("500x700")
 frame = Frame(root)
@@ -88,8 +72,8 @@ labelSub.pack(padx=10, pady=10)
 lablel11 = Label(frame, text="Map configuration:", font=("Helvetica", 16))
 lablel11.pack(padx=10, pady=10)
 
-bubtton12 = Button(frame, text="Download map", command=downloadMap)
-bubtton12.pack()
+# bubtton12 = Button(frame, text="Download map", command=downloadMap)
+# bubtton12.pack()
 
 bubtton11 = Button(frame, text="Map configuration", command=mapConfig)
 bubtton11.pack()
@@ -114,9 +98,17 @@ labelDiv3 = Label(frame, text="_______________________________________", font=("
 labelDiv3.pack()
 
 label3 = Label(
-    frame, text="Third step: Run the project\n Two options: \n *Manual \n *Automatic", font=("Helvetica", 16)
+    frame, text="Third step: Run the Robot with moving algorithm", font=("Helvetica", 16)
 )
 label3.pack(padx=10, pady=10)
+
+algoList = ["Manual", "Automatic"]
+algoCombo = Combobox(frame, values=algoList)
+algoCombo.current(0)
+
+algoCombo.state(["readonly"])
+algoCombo.pack(padx=10, pady=4)
+
 
 button3 = Button(frame, text="Select control", command=controlAlgorithm)
 button3.pack(padx=5, pady=5)
