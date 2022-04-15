@@ -189,6 +189,56 @@ def main():
     rover = rover_factory(base_object, wheal_object, caster_object)
     rover.config()
 
+        buttonClose.pack()
+
+    root.geometry("350x250")
+    frame = Frame(root)
+    frame.pack()
+
+    label1 = Label(frame, text="Select wheel configuration:")
+    label1.pack(padx=10, pady=4)
+
+    wheelList = ["1", "2", "3"]
+    wheelCombo = Combobox(frame, values=wheelList)
+    wheelCombo.current(0)
+
+    wheelCombo.state(["readonly"])
+    wheelCombo.pack(padx=10, pady=4)
+
+    label2 = Label(frame, text="Select caster configuration:")
+    label2.pack(padx=10, pady=4)
+
+    casterList = ["1", "2", "3"]
+    casterCombo = Combobox(frame, values=casterList)
+    casterCombo.current(0)
+
+    casterCombo.state(["readonly"])
+    casterCombo.pack(padx=10, pady=4)
+
+    label3 = Label(frame, text="Select base configuration:")
+    label3.pack(padx=10, pady=4)
+
+    baseList = ["1", "2", "3"]
+    baseCombo = Combobox(frame, values=baseList)
+    baseCombo.current(0)
+
+    baseCombo.state(["readonly"])
+    baseCombo.pack(padx=10, pady=4)
+
+    buttonSub = Button(frame, text="Submit", command=handleValues)
+    buttonSub.pack()
+
+    successLabel = Label(frame, text="", fg="green")
+    successLabel.pack()
+
+    errorLabel = Label(frame, text="", fg="red")
+    errorLabel.pack()
+
+    buttonClose = Button(frame, text="Close", command=root.destroy)
+
+    root.title("Rover customization")
+    root.mainloop()
+
 
 if __name__ == "__main__":
     main()
