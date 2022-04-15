@@ -30,3 +30,6 @@ sudo apt update
 sudo apt install python3-colcon-common-extensions
 echo "Installing Slam Tools"
 sudo apt install ros-foxy-slam-toolbox
+cd ~/ros2_foxy/
+colcon build --symlink-install
+. ~/ros2_foxy/install/local_setup.bash
