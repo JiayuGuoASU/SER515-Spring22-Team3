@@ -9,18 +9,9 @@
     </inertial>
   </xacro:macro>
 
-  <link name="base_footprint">
-    <xacro:box_inertia m="20" w="0.001" h="0.001" d="0.001"/>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-         <box size="0.001 0.001 0.001" />
-      </geometry>
-    </visual>
-  </link>
-
+  <link name="base_footprint"/>
   <link name="base_link">
-    <xacro:box_inertia m="10" w="${base_length}" h="${base_width}" d="${base_height}"/>
+    <xacro:box_inertia m="30" w="${base_length}" h="${base_width}" d="${base_height}"/>
     <visual>
       <geometry>
         <box size="${base_length} ${base_width} ${base_height}"/>
@@ -35,7 +26,7 @@
   </link>
 
   <joint name="base_joint" type="fixed">
-    <origin xyz="0 0 ${wheel_radius + 0.005}" rpy="0 0 0" />
+    <origin xyz="0 0 ${-(wheel_radius+wheel_zoff)}" rpy="0 0 0" />
     <parent link="base_link"/>
     <child link="base_footprint" />
   </joint>
