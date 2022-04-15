@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+import subprocess
 
 
 class rover_factory:
@@ -8,7 +9,7 @@ class rover_factory:
         self.caster = caster
 
     def config(self):
-        file = open('Anton.xacro', 'w')
+        file = open('./src/Anton_description/urdf/Anton_xacro', 'w')
         file.write('<?xml version="1.0"?>\n')
         file.write('\n<robot name="Anton" xmlns:xacro="http://www.ros.org/wiki/xacro">\n')
         base = self.base.config(self)
@@ -27,7 +28,8 @@ class rover_factory:
                    'filename="./wheels.xacro"/>\n\t<xacro:include filename="./caster.xacro"/>\n\t<xacro:include '
                    'filename="./laser.xacro"/>\n\t<xacro:include filename="./camera.xacro"/>\n\t<xacro:include '
                    'filename="./AntonPlugins.xacro"/>\n</robot>')
-                   
+        subprocess.call(["gnome-terminal", "--", "bash", "-c", "source /opt/ros/foxy/setup.bash; read"])
+        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd src; cd Anton_description; cd urdf; xacro Anton.xacro > Anton1.urdf; read"])
 
 
 class Base(metaclass=ABCMeta):
@@ -38,19 +40,19 @@ class Base(metaclass=ABCMeta):
 
 class Base1(Base):
     def config(self, rover):
-        base_dimensions = '<xacro:include filename="./basedimensions1.xacro"/>'
+        base_dimensions = '<xacro:include filename="./chasis_dimension_1.xacro"/>'
         return base_dimensions
 
 
 class Base2(Base):
     def config(self, rover):
-        base_dimensions = '<xacro:include filename="./basedimensions2.xacro"/>'
+        base_dimensions = '<xacro:include filename="./chasis_dimension_2.xacro"/>'
         return base_dimensions
 
 
 class Base3(Base):
     def config(self, rover):
-        base_dimensions = '<xacro:include filename="./basedimensions3.xacro"/>'
+        base_dimensions = '<xacro:include filename="./chasis_dimension_3.xacro"/>'
         return base_dimensions
 
 
@@ -62,19 +64,19 @@ class Wheel(metaclass=ABCMeta):
 
 class Wheel1(Wheel):
     def config(self, rover):
-        wheel_dimensions = '<xacro:include filename="./wheeldimensions1.xacro"/>'
+        wheel_dimensions = '<xacro:include filename="./wheels_dimension_1.xacro"/>'
         return wheel_dimensions
 
 
 class Wheel2(Wheel):
     def config(self, rover):
-        wheel_dimensions = '<xacro:include filename="./wheeldimensions2.xacro"/>'
+        wheel_dimensions = '<xacro:include filename="./wheels_dimension_2.xacro"/>'
         return wheel_dimensions
 
 
 class Wheel3(Wheel):
     def config(self, rover):
-        wheel_dimensions = '<xacro:include filename="./wheeldimensions3.xacro"/>'
+        wheel_dimensions = '<xacro:include filename="./wheels_dimension_3.xacro"/>'
         return wheel_dimensions
 
 
@@ -86,19 +88,19 @@ class Caster(metaclass=ABCMeta):
 
 class Caster1(Caster):
     def config(self, rover):
-        caster_dimensions = '<xacro:include filename="./casterdimensions1.xacro"/>'
+        caster_dimensions = '<xacro:include filename="./caster_dimension_1.xacro"/>'
         return caster_dimensions
 
 
 class Caster2(Caster):
     def config(self, rover):
-        caster_dimensions = '<xacro:include filename="./casterdimensions2.xacro"/>'
+        caster_dimensions = '<xacro:include filename="./caster_dimension_2.xacro"/>'
         return caster_dimensions
 
 
 class Caster3(Caster):
     def config(self, rover):
-        caster_dimensions = '<xacro:include filename="./casterdimensions3.xacro"/>'
+        caster_dimensions = '<xacro:include filename="./caster_dimension_3.xacro"/>'
         return caster_dimensions
 
 
