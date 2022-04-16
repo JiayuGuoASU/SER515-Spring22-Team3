@@ -1,8 +1,10 @@
 # Anton(Rover)
 
 ## Introduction
+![software](https://user-images.githubusercontent.com/89811597/163657893-6e2dd8bc-761b-48b7-b6fc-acc3bdb44d29.png)
 
-We built software to let the users use our autonomous robot to explore an unexplored map.
+The Autonomous Rover Development Environment (Anton) simulates an autonomous rover traversing through an unknown 2D environment for discovery and exploration. The rover is equipped with different sensors that help it map and discover the unexplored environment. Human exploration of unexplored areas is sometimes really difficult and is usually dangerous. The hard to reach areas can be extremely fragile and hence not suitable for exploration by a human. Our autonomous rover solves this problem by mapping the hidden areas using LiDAR and other sensors and makes human exploration possible while being either manually or autonomously operated. Hence this project would substantially improve the area of exploration of the unexplored environments and thereby will be beneficial to organizations that use it for their exploration all while keeping the user safe and sound away from structurally compromised locations.
+
 ### Overview of our software:
 Platform: Our software is building on ROS2, using RVIZ and Gazebo to simulate the robot.
 
