@@ -41,9 +41,9 @@ A User-friendly User Interface including the following features:
 
 ## Resources of our project
 
-Installation:
+Installation:https://github.com/JiayuGuoASU/SER515-Spring22-Team3/blob/main/document/How%20to%20Run.md
 
-User manual:
+User manual:https://github.com/JiayuGuoASU/SER515-Spring22-Team3/blob/main/document/Mapping%20with%20Anton.md
 
 Demo:https://www.youtube.com/watch?v=1vAm6UHpxhE&list=PLhMbliC9pvicBXlBxUncF8XLzbFfkGw66&ab_channel=ShengdongChen
 
