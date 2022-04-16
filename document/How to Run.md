@@ -1,7 +1,6 @@
-# User Manual
+# How to run:
 
-## Installation:
-### Windows(prefer):
+## Windows
 
 1. Download git: https://git-scm.com/downloads
 2. Download docker: https://docs.docker.com/get-docker/
@@ -9,7 +8,7 @@
 4. clone our repo: git clone https://github.com/JiayuGuoASU/SER515-Spring22-Team3.git
 5. open the repo by using vscode.
 
-### Linux:
+## Linux
 
 1. Install Ubuntu:https://ubuntu.com/
 
@@ -25,11 +24,7 @@
    python3 App.py
    ```
 
-### macOS:
+## macOS
 
 not support
-
-
-
-## Mapping with Anton
 
