@@ -43,14 +43,15 @@ def getSLAM():
     except:
         subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./slam.sh; read"])
     button3.config(state=NORMAL)
+    button22.config(state=NORMAL)
 
 
 def downloadMap():
     try:
-        subprocess.Popen(["xterm", "-e", "./script/download_map.sh"])
+        subprocess.Popen(["xterm", "-e", "./script/downloadmap.sh"])
 
     except:
-        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./download_map.sh; read"])
+        subprocess.call(["gnome-terminal", "--", "bash", "-c", "cd script; ./downloadmap.sh; read"])
 
 
 def close():
@@ -133,6 +134,10 @@ label21.pack(padx=10, pady=10)
 button21 = Button(frame, text="Start Slam", command=getSLAM)
 button21.pack()
 button21.config(state=DISABLED)
+
+button22 = Button(frame, text="Save map", command=downloadMap)
+button22.pack()
+button22.config(state=DISABLED)
 
 labelDiv31 = Label(frame, text="_______________________________________", font=("Helvetica", 20))
 labelDiv31.pack()
