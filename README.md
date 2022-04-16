@@ -34,7 +34,7 @@ A User-friendly User Interface including the following features:
 
 ## What our system looks like:
 
-![design](/Users/lizhuoran/Documents/GitHub/SER515-Spring22-Team3/README.assets/design.png)
+![design](https://user-images.githubusercontent.com/89811597/163655268-fcc63942-5e20-4d38-af66-1957812b17e3.png)
 
 ## Resources of our project
 
