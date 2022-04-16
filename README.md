@@ -1,4 +1,4 @@
-# Anton(Rover)
+# Anton
 
 ## Introduction
 ![software](https://user-images.githubusercontent.com/89811597/163657893-6e2dd8bc-761b-48b7-b6fc-acc3bdb44d29.png)
@@ -8,16 +8,17 @@ The Autonomous Rover Development Environment (Anton) simulates an autonomous rov
 ### Overview of our software:
 Platform: Our software is building on ROS2, using RVIZ and Gazebo to simulate the robot.
 
-GUI: We have a GUI interface for users to easily operate the software.
+GUI: We have a handy GUI interface for users to interact with the software.
 
-Robot: We have a two-wheel robot and a customized map.
+Robot: Our software assembles a robot with multiple configuration files(by user selection).
+
+Map: Our software provides 3 environments for user to choose: RobotCupField, GasStation and Museum.
 
 Mapping System: We use the slam-tool-box to render the map.
 
 Control System: Manually & Automatically control.
 
-Design Pattern: We use design patterns to make our software more robust and strong.
-
+Design Pattern: We use design patterns to make our software more flexible and stable.
 ### What are the advantages/features?
 A User-friendly User Interface including the following features: 
 
@@ -44,7 +45,7 @@ Installation:
 
 User manual:
 
-Demo:https://www.youtube.com/channel/UCQLYQkLfToPyjbYGML2pBFg
+Demo:https://www.youtube.com/watch?v=1vAm6UHpxhE&list=PLhMbliC9pvicBXlBxUncF8XLzbFfkGw66&ab_channel=ShengdongChen
 
 Taiga Link:https://tree.taiga.io/project/guitang-ser515_group3/timeline
 
