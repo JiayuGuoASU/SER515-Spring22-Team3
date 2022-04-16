@@ -45,7 +45,7 @@ Installation:
 
 User manual:
 
-Demo:https://www.youtube.com/channel/UCQLYQkLfToPyjbYGML2pBFg
+Demo:https://www.youtube.com/watch?v=1vAm6UHpxhE&list=PLhMbliC9pvicBXlBxUncF8XLzbFfkGw66&ab_channel=ShengdongChen
 
 Taiga Link:https://tree.taiga.io/project/guitang-ser515_group3/timeline
 
