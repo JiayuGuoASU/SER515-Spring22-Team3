@@ -33,7 +33,8 @@ A User-friendly User Interface including the following features:
   - Saving maps
 
 ## What our system looks like:
-![design](/Users/lizhuoran/Documents/GitHub/SER515-Spring22-Team3/design.png)
+
+![design](/Users/lizhuoran/Documents/GitHub/SER515-Spring22-Team3/README.assets/design.png)
 
 ## Resources of our project
 
